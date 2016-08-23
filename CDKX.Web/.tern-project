@@ -1,0 +1,13 @@
+{
+	"libs": [
+		"jquery"
+		],
+  "loadEagerly": [
+    "/Content/js/web/BodeClass.js",
+    "/Content/js/osharp/osharp.datatable.js",
+    "/Content/js/osharp/osharp.global.js",
+    "/Content/js/osharp/osharp.treeview.js",
+    "/Content/js/osharp/osharp.wizard.js"
+  ],
+	"plugins": {}
+}

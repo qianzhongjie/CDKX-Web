@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+    var contentList = (List<Bode.Services.Core.Models.Help.Content>)
+ ViewBag.Data;
+}
+<footer>
+    <section class="foot-service p-colorH">
+        <div class="service-con con">
+            <ul class="items clearfix">
+                <li class="item col-4-1 l">
+                    <div class="item-pic">
+                        <p class="ic-pinzhi">
+                        </p>
+                    </div>
+                    <div class="item-con">
+                        <h3 class="f-16">品质保障</h3>
+                        <p class="f-14">只选优质材料  只做优质产品  </p>
+                    </div>
+                </li>
+                <li class="item col-4-1 l">
+                    <div class="item-pic">
+                        <p class="ic-personal">
+                        </p>
+                    </div>
+                    <div class="item-con">
+                        <h3 class="f-16">个性定制</h3>
+                        <p class="f-14">自主个性定制  坚持自有风格</p>
+                    </div>
+                </li>
+                <li class="item col-4-1 l">
+                    <div class="item-pic">
+                        <p class="ic-service">
+                        </p>
+                    </div>
+                    <div class="item-con">
+                        <h3 class="f-16">金牌服务</h3>
+                        <p class="f-14">您的满意  我们永恒的追求</p>
+                    </div>
+                </li>
+                <li class="item col-4-1 l">
+                    <div class="item-pic">
+                        <p class="ic-help">
+                        </p>
+                    </div>
+                    <div class="item-con">
+                        <h3 class="f-16">帮助中心</h3>
+                        <p class="f-14">您的购物指南</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="foot-other">
+        <div class="other-con con">
+            <ul class="items clearfix text-c">
+                @{
+                    var id = 1;
+                    foreach (Bode.Services.Core.Models.Help.Muemu mu in ViewBag.Muemu)
+                    {
+                        <li class="item col-4-1 l">
+                            <h3 class="f-16">@mu.Name</h3>
+                            <ul>
+                                @{var mu1 = mu;
+                                foreach (Bode.Services.Core.Models.Help.Content content in contentList.Where(x => x.Muemu.Id == mu1.Id))
+                                {
+                                    <li><a href="/Web/Home/Help?id=@content.Id">@content.Title</a></li>
+                                    id++;
+                                }
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+                @*<li class="item col-4-1 l">
+                        <h3 class="f-16">新手入门</h3>
+                        <ul>
+                            <li><a href="#">用户注册</a></li>
+                            <li><a href="#">导购演示</a></li>
+                            <li><a href="#">脚型自测</a></li>
+                        </ul>
+                    </li>
+                    <li class="item col-4-1 l">
+                        <h3 class="f-16">付款配送</h3>
+                        <ul>
+                            <li><a href="#">关于付款</a></li>
+                            <li><a href="#">关于配送</a></li>
+                        </ul>
+                    </li>
+                    <li class="item col-4-1 l">
+                        <h3 class="f-16">售后服务</h3>
+                        <ul>
+                            <li><a href="#">退换政策</a></li>
+                            <li><a href="#">鞋子保养手册</a></li>
+                        </ul>
+                    </li>*@
+
+                @*<li class="item col-4-1 l">
+                        <h3 class="f-16">联系我们</h3>
+                        <ul>
+                            <li><a href="javascript:void(0);" onclick="hideToolbarMsg()">联系客服</a></li>
+                        </ul>
+                    </li>*@
+            </ul>
+        </div>
+    </section>
+    <section class="foot-right f-14">
+        <span>Copyright ◎ 2014-2015</span>
+        <span>四川西部鞋都有限责任公司</span>
+        <span>蜀ICP备12004523号 All Rights</span>
+    </section>
+</footer>

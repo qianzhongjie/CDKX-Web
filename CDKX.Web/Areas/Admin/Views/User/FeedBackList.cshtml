@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "用户反馈列表";
+    ViewBag.ToolbarItem = "delete";
+    ViewBag.GridDataUrl = Url.Action("GetFeedBackData");
+    ViewBag.DeleteUrl = Url.Action("DeleteFeedBacks");
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+}
+
+@section customScript
+{
+    <script type="text/javascript">
+        columns = [
+            { data: "Id", title: "编号" },
+            { data: "UserName", title: "用户名", type: "text", search: true },
+            { data: "NickName", title: "昵称", type: "text", search: true },
+            { data: "Content", title: "反馈内容", type: "text", search: true },
+            {
+                data: "反馈时间",
+                title: "注册时间",
+                type: "datepicker",
+                search: true,
+                format: function(d) {
+                    return $.osharp.tools.formatDate(d);
+                },
+                isformatval: true
+            }
+        ];
+    </script>
+}
+

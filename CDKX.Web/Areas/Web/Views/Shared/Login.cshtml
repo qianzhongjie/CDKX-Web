@@ -1,0 +1,288 @@
+﻿@using Bode.Plugin.WebControles.MvcCaptcha
+@{
+    Layout = null;
+}
+<!-- login -->
+<section class="login" id="loginBox" style="display:none;">
+    <div class="login-box pd-40">
+        <div class="box-title pos-r mb-20">
+            <h4 class="f-20 text-c">中国女鞋之都</h4>
+            <a href="javascript:void(0)" class="f-14 register" id="back_register">注册为会员></a>
+        </div>
+        <div class="login-con" id="login">
+            <div class="login-style colorB f-14 lh-30 mb-10">
+                <div class="radio-box style1 mr-30" data-index="1" id="div1_login">
+                    <input type="radio" id="radio-1" name="demo-radio1" checked>
+                    <label for="radio-1">服务密码登录</label>
+                </div>
+                <div class="radio-box style2" data-index="2">
+                    <input type="radio" id="radio-2" name="demo-radio1">
+                    <label for="radio-2">随机密码登录</label>
+                </div>
+            </div>
+            <!-- style1 -->
+            <form class="login-form form" id="login_form1">
+                <input type="tel" name="loginPhone" id="login_phone" placeholder="手机号" class="indent input-text mb-20">
+                <input type="password" name="loginPassword" id="login_password" placeholder="密码" class="indent input-text mb-20">
+                <p class="cl">
+                    @Html.ValidationSummary()
+                    @Html.MvcCaptcha()
+                    <input type="text" name="_mvcCaptchaText" id="_mvcCaptchaText1" placeholder="输入验证码" class="l confirm indent input-text mb-20 col-2-1">
+                </p>
+                <input type="button" value="登录" class="f-20 btn btn-default login-btn " typeid="1" onclick="login(this)">
+                <a href="#" class="f-14 lh-20 colorH text-r" style="display: block">忘记密码？</a>
+                <span class="f-16 colorH text-c"><font color="#de64a6" id="msg_login1"></font></span>
+            </form>
+            <!-- style1 -->
+            <!-- style2 -->
+            <form class="login-form form" id="login_form2">
+                <input type="tel" name="loginPhone" id="login_phone1" placeholder="手机号" class="indent input-text mb-20">
+                <p class="cl">
+                    <input type="text" name="loginPassword" id="login_password2" placeholder="6位数字密码" class="indent input-text confirm mb-20 col-2-1 l">
+                    <input type="button" class="confirm-btn input-text col-3-1 r text-c f-16 btn" value="获取密码" onclick="getTimer(59, this);">
+                </p>
+                <p class="cl">
+                    @Html.ValidationSummary()
+                    @Html.MvcCaptcha()
+                    <input type="text" name="_mvcCaptchaText" id="_mvcCaptchaText2" placeholder="输入验证码" class="l confirm indent input-text mb-20 col-2-1">
+                </p>
+                <input type="button" value="登录" class="f-20 btn btn-default login-btn" onclick="login(this)" typeid="2">
+                <a href="#" class="f-14 lh-20 colorH text-r" style="display: block">忘记密码？</a>
+                <span class="f-16 colorH text-c"><font color="#de64a6" id="msg_login2"></font></span>
+            </form>
+            <!-- style2 -->
+        </div>
+        <div class="other-login mt-40 text-c">
+            <p class="f-16 colorH text-c">使用第三方账号登录</p>
+            <ul class="login-icon  mt-30">
+                <li class="text-c">
+                    <a href="#" class="qq"></a>
+                </li>
+                <li class="text-c ">
+                    <a href="#" class="weixin"></a>
+                </li>
+                <li class="text-c">
+                    <a href="#" class="weibo"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+<div class="mask"></div>
+<!-- //register and login -->
+<script type="text/javascript">
+
+
+    //处理验证码图片
+    function reloadMvcCaptchaImage(v) {
+        var ci = $('#login_form' + v + '').find('img');
+        var sl = ci.attr('src').length;
+        if (ci.attr('src').indexOf("&") > -1) {
+            sl = ci.attr('src').indexOf("&");
+        }
+        ci.attr('src', ci.attr('src').substr(0, sl) + "&" + (new Date().valueOf()));
+    }
+    function checkForms(o) {
+        if (!!o.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/) === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function getTimer(v, d) {
+        $("#msg_login2").html('');
+        if ($("#login_phone1").val() === "") {
+            $("#msg_login2").html('请输入手机号码');
+        }
+        else if (!checkForms($("#login_phone1").val())) {
+            $("#msg_login2").html('请输入正确的手机号码');
+        } else {
+            $.post("@Url.Action("GetCode", "Account")", { phoneNo: $("#login_phone1").val(), type: 4 }, function (data) {
+                $("#msg_login2").html(data);
+            });
+            timer(v, d);
+        }
+    }
+    //function GetCode() {
+
+    //}
+    //倒计时
+    function timer(intDiff, button) {
+        setInterval(function () {
+            var day = 0,
+                hour = 0,
+                minute = 0,
+                second = 0; //时间默认值
+            if (intDiff > 0) {
+                day = Math.floor(intDiff / (60 * 60 * 24));
+                hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (second <= 9) second = '0' + second;
+            $(button).attr("disabled", true);
+            $(button).attr('value', '' + second + ' 秒后再试');
+            intDiff--;
+            if (second === "00") { $(button).attr("disabled", false); $(button).attr('value', '获取密码'); }
+        }, 1000);
+
+    }
+    //调整验证码位置
+    $(function () {
+        $('#login_form2').find('a').eq(0).attr('href', 'javascript:reloadMvcCaptchaImage("2")');
+        $('#login_form2').find('a').eq(1).remove();
+        $('#login_form2').find('a').eq(0).attr('class', 'r');
+        $('#login_form2').find('img').attr('width', '172');
+        $('#login_form2').find('img').attr('height', '50');
+
+        $('#login_form1').find('a').eq(0).attr('href', 'javascript:reloadMvcCaptchaImage(1)');
+        $('#login_form1').find('a').eq(1).remove();
+        $('#login_form1').find('a').eq(0).attr('class', 'r');
+        $('#login_form1').find('img').attr('width', '172');
+        $('#login_form1').find('img').attr('height', '50');
+
+
+        function registerChange(btn, box1, box2, checkbox) {
+
+            box1.css('display', 'block');
+            box2.css('display', 'none');
+
+            btn.click(function () {
+                box2.css('display', 'block');
+                box1.css('display', 'none');
+                $('.register-box').removeClass('register1');
+            });
+
+            checkbox.click(function () {
+                if (checkbox.hasClass('checked')) {
+                    checkbox.removeClass('checked')
+                } else {
+                    checkbox.addClass('checked')
+                }
+            });
+
+        }
+
+        $.Huitab("#login .radio-box", ".form", "current", "click", "1");
+
+        /*login or register*/
+
+
+
+        function logins() {
+            var loginBtn = $('#loginBtn'),
+                loginBox = $('#loginBox'),
+                registerBtn = $('#registerBtn'),
+                registerBox = $('#registerBox'),
+                backRegister = $('#back_register'),
+                backLogin = $('#back_login'),
+                mask = $('.mask');
+
+            mask.css('display', 'none');
+            loginBox.css('display', 'none');
+            registerBox.css('display', 'none');
+
+            loginBtn.click(function () {
+                mask.fadeIn();
+                loginBox.fadeIn();
+            });
+            backLogin.click(function() {
+                registerBox.css('display', 'none');
+                loginBox.fadeIn();
+            });
+            backRegister.click(function () {
+                loginBox.css('display', 'none');
+                registerBox.fadeIn();
+                $('.form2').css('display', 'none');
+            });
+            registerBtn.click(function () {
+                mask.fadeIn();
+                registerBox.fadeIn();
+                $('.form2').css('display', 'none');
+            });
+            mask.click(function () {
+                loginBox.fadeOut();
+                registerBox.fadeOut();
+                mask.fadeOut();
+            });
+        }
+
+        logins();
+        //function changeTab(btn1, btn2, box1, box2, a) {
+        //    if (a === true) {
+        //        box1.css('display', 'block');
+        //        box2.css('display', 'none');
+        //    } else {
+        //        box1.css('display', 'none');
+        //        box2.css('display', 'none');
+        //    }
+        //    btn1.click(function () {
+        //        $(".maskBox").css('display', 'block');
+        //        box1.css('display', 'block');
+        //        box2.css('display', 'none');
+
+        //    });
+        //    btn2.click(function () {
+        //        $(".maskBox").css('display', 'block');
+        //        box2.css('display', 'block');
+        //        box1.css('display', 'none');
+        //        $('.login-box').removeClass('register1');
+        //    });
+        //}
+
+        ///*login*/
+        //changeTab($('#registerBtn'), $('#loginBtn'), $('.register'), $('.login'), false);
+
+        //$.Huitab("#login .radio-box", ".form", "current", "click", "1");
+
+
+        /*register tab change*/
+
+        $('#login_form1').css('display', 'block');
+        $('#login_form2').css('display', 'none');
+    });
+
+    //登录提交
+    function login(obj) {
+        var type = $(obj).attr('typeId');
+        var msgObj = $("#msg_login1");
+        var phoe = $("#login_phone");
+        var pass = $("#login_password1");
+        var formData = $('#login_form1').serialize();
+        if (type === "2") {
+            formData = $('#login_form1').serialize();
+            msgObj = $("#msg_login2");
+            phoe = $("#login_phone1");
+            pass = $("#login_password2");
+        }
+
+        if (phoe.val() === "") {
+            msgObj.html('请输入手机号');
+        } else if (!checkForms(phoe.val())) {
+            msgObj.html('请输入正确的手机号码');
+        } else if (pass.val() === "") {
+            msgObj.html('请输入密码');
+        } else {
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Login", "Account")",
+                async: false,
+                data: formData + "&type=" + type + "&loginDevice=3",
+                success: function (data) {
+                    if (data.ReturnCode === 1) {
+                        msgObj.html(data.ReturnMsg);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+
+                    } else {
+                        msgObj.html(data.ReturnMsg);
+                    }
+                    //$('#register').find('img').trigger('click');
+                }
+            });
+        }
+    }
+</script>

@@ -1,0 +1,1172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OSharp.Data.Entity</name>
+    </assembly>
+    <members>
+        <member name="T:OSharp.Data.Entity.DatabaseInitializer">
+            <summary>
+            数据库初始化器，从程序集中反射实体映射类并加载到相应上下文类中，进行上下文类型的初始化
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DatabaseInitializer.MapperAssemblyFinder">
+            <summary>
+            获取或设置 实体映射程序集查找器
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DatabaseInitializer.Initialize(OSharp.Core.Configs.DataConfig)">
+            <summary>
+            开始初始化数据库
+            </summary>
+            <param name="config">数据库配置信息</param>
+        </member>
+        <member name="M:OSharp.Data.Entity.DatabaseInitializer.GetDefaultDbContextConfig">
+            <summary>
+            获取默认业务上下文配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DatabaseInitializer.GetLoggingDbContextConfig">
+            <summary>
+            获取默认日志上下文配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DatabaseInitializer.DbContextInit(OSharp.Core.Configs.DbContextConfig)">
+            <summary>
+            初始化数据上下文
+            </summary>
+            <param name="config">数据上下文配置信息</param>
+        </member>
+        <member name="T:OSharp.Data.Entity.DataConfigReseter">
+            <summary>
+            数据配置信息重置类
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DataConfigReseter.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DataConfigReseter"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DataConfigReseter.MapperAssemblyFinder">
+            <summary>
+            获取或设置 实体映射程序集查找器
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DataConfigReseter.Reset(OSharp.Core.Configs.DataConfig)">
+            <summary>
+            重置数据配置信息
+            </summary>
+            <param name="config">原始数据配置信息</param>
+            <returns>重置后的数据配置信息</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DataConfigReseter.GetDefaultDbContextConfig">
+            <summary>
+            获取默认业务上下文配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DataConfigReseter.GetLoggingDbContextConfig">
+            <summary>
+            获取默认日志上下文配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.DataHelper">
+            <summary>
+            数据辅助操作类
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DataHelper.GetSqlExceptionMessage(System.Int32)">
+            <summary>
+            由错误码返回指定的自定义SqlException异常信息
+            </summary>
+            <param name="number"> 错误代码</param>
+            <returns>错误代码对应的描述</returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.DbContextBase`1">
+            <summary>
+            数据库上下文基类
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.#ctor(System.Data.Entity.Infrastructure.DbCompiledModel)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.#ctor(System.String)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.#ctor(System.String,System.Data.Entity.Infrastructure.DbCompiledModel)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.#ctor(System.Data.Common.DbConnection,System.Boolean)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.#ctor(System.Data.Common.DbConnection,System.Data.Entity.Infrastructure.DbCompiledModel,System.Boolean)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.#ctor(System.Data.Entity.Core.Objects.ObjectContext,System.Boolean)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.GetConnectionStringName">
+            <summary>
+            获取数据库连接字符串的名称
+            </summary>
+            <returns>数据库连接字符串对应的名称</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.GetDbContextConfig">
+            <summary>
+            获取OSharp框架数据上下文配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextBase`1.ServiceProvider">
+            <summary>
+            获取或设置 服务提供者
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextBase`1.DataLogCache">
+            <summary>
+            获取或设置 数据日志缓存
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextBase`1.DataLoggingEnabled">
+            <summary>
+            获取 是否允许数据库日志记录
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextBase`1.TransactionEnabled">
+            <summary>
+            获取或设置 是否开启事务提交
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.GetSlaveContext(System.String)">
+            <summary>
+            获取读库上下文默认实现
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:OSharp.Data.Entity.DbContextBase`1._readContext">
+            <summary>
+            获取读库上下文
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.ExecuteSqlCommand(OSharp.Core.Data.TransactionalBehavior,System.String,System.Object[])">
+            <summary>
+            对数据库执行给定的 DDL/DML 命令。 
+            与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
+            您提供的任何参数值都将自动转换为 DbParameter。 unitOfWork.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @p0", userSuppliedAuthor); 
+            或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。 unitOfWork.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));
+            </summary>
+            <param name="transactionalBehavior">对于此命令控制事务的创建。</param>
+            <param name="sql">命令字符串。</param>
+            <param name="parameters">要应用于命令字符串的参数。</param>
+            <returns>执行命令后由数据库返回的结果。</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.SqlQuery``1(System.String,System.Object[])">
+            <summary>
+            创建一个原始 SQL 查询，该查询将返回给定泛型类型的元素。 类型可以是包含与从查询返回的列名匹配的属性的任何类型，也可以是简单的基元类型。 该类型不必是实体类型。
+             即使返回对象的类型是实体类型，上下文也决不会跟踪此查询的结果。 使用 SqlQuery(String, Object[]) 方法可返回上下文跟踪的实体。 
+            与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
+            您提供的任何参数值都将自动转换为 DbParameter。 unitOfWork.SqlQuery&lt;Post&gt;("SELECT * FROM dbo.Posts WHERE Author = @p0", userSuppliedAuthor); 
+            或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。 unitOfWork.SqlQuery&lt;Post&gt;("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));
+            </summary>
+            <typeparam name="TElement">查询所返回对象的类型。</typeparam>
+            <param name="sql">SQL 查询字符串。</param>
+            <param name="parameters">要应用于 SQL 查询字符串的参数。 如果使用输出参数，则它们的值在完全读取结果之前不可用。 这是由于 DbDataReader 的基础行为而导致的，有关详细信息，请参见 http://go.microsoft.com/fwlink/?LinkID=398589。</param>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.SqlQuery(System.Type,System.String,System.Object[])">
+            <summary>
+            创建一个原始 SQL 查询，该查询将返回给定类型的元素。 类型可以是包含与从查询返回的列名匹配的属性的任何类型，也可以是简单的基元类型。 该类型不必是实体类型。 即使返回对象的类型是实体类型，上下文也决不会跟踪此查询的结果。 使用 SqlQuery(String, Object[]) 方法可返回上下文跟踪的实体。 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 您提供的任何参数值都将自动转换为 DbParameter。 context.Database.SqlQuery(typeof(Post), "SELECT * FROM dbo.Posts WHERE Author = @p0", userSuppliedAuthor); 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。 context.Database.SqlQuery(typeof(Post), "SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));
+            </summary>
+            <param name="elementType">查询所返回对象的类型。</param>
+            <param name="sql">SQL 查询字符串。</param>
+            <param name="parameters">要应用于 SQL 查询字符串的参数。 如果使用输出参数，则它们的值在完全读取结果之前不可用。 这是由于 DbDataReader 的基础行为而导致的，有关详细信息，请参见 http://go.microsoft.com/fwlink/?LinkID=398589。</param>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.SaveChanges">
+            <summary>
+            提交当前单元操作的更改
+            </summary>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.SaveChanges(System.Boolean)">
+            <summary>
+            提交当前单元操作的更改
+            </summary>
+            <param name="validateOnSaveEnabled">提交保存时是否验证实体约束有效性。</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.ExecuteSqlCommandAsync(OSharp.Core.Data.TransactionalBehavior,System.String,System.Object[])">
+            <summary>
+            对数据库执行给定的 DDL/DML 命令。 
+            与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
+            您提供的任何参数值都将自动转换为 DbParameter。 unitOfWork.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @p0", userSuppliedAuthor); 
+            或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。 unitOfWork.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));
+            </summary>
+            <param name="transactionalBehavior">对于此命令控制事务的创建。</param>
+            <param name="sql">命令字符串。</param>
+            <param name="parameters">要应用于命令字符串的参数。</param>
+            <returns>执行命令后由数据库返回的结果。</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.SaveChangesAsync">
+            <summary>
+            异步提交当前单元操作的更改。
+            </summary>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextBase`1.SaveChangesAsync(System.Boolean)">
+            <summary>
+            提交当前单元操作的更改。
+            </summary>
+            <param name="validateOnSaveEnabled">提交保存时是否验证实体约束有效性。</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.DbContextInitializerBase`1">
+            <summary>
+            数据上下文初始化基类
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase`1.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextInitializerBase"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextInitializerBase`1.CreateDatabaseInitializer">
+            <summary>
+            获取或设置 设置数据库创建初始化，默认为<see cref="T:System.Data.Entity.CreateDatabaseIfNotExists`1"/>
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextInitializerBase`1.MigrateInitializer">
+            <summary>
+            获取或设置 数据迁移策略，默认为自动迁移
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase`1.EntityMappersFilter(System.Collections.Generic.IEnumerable{OSharp.Data.Entity.IEntityMapper})">
+            <summary>
+            重写以筛选出当前上下文的实体映射信息
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase`1.ContextInitialize">
+            <summary>
+            数据库初始化实现，设置数据库初始化策略，并进行EntityFramework的预热
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.DbContextInitializerBase">
+            <summary>
+            数据上下文初始化基类
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextInitializerBase"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextInitializerBase.MapperAssemblies">
+            <summary>
+            获取或设置 实体映射程序集
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextInitializerBase.EntityMappers">
+            <summary>
+            获取 当前上下文的实体映射信息集合
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase.Initialize">
+            <summary>
+            执行数据上下文初始化
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase.EntityMappersInitialize">
+            <summary>
+            初始化实体映射类型
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase.EntityMappersFilter(System.Collections.Generic.IEnumerable{OSharp.Data.Entity.IEntityMapper})">
+            <summary>
+            重写以筛选出当前上下文的实体映射信息
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextInitializerBase.ContextInitialize">
+            <summary>
+            数据库初始化实现，设置数据库初始化策略，并进行EntityFramework的预热
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.DbContextManager">
+            <summary>
+            数据上下文管理器
+            </summary>
+        </member>
+        <member name="F:OSharp.Data.Entity.DbContextManager._contextInitializerDict">
+            <summary>
+            上下文类型-上下文初始化类型
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.DbContextManager.Instance">
+            <summary>
+            获取 上下文管理器的唯一实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextManager.RegisterInitializer(System.Type,OSharp.Data.Entity.DbContextInitializerBase)">
+            <summary>
+            注册上下文初始化器
+            </summary>
+            <param name="contextType">上下文类型</param>
+            <param name="initializer">上下文初始化器</param>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextManager.GetDbContexType(System.Type)">
+            <summary>
+            获取实体类型对应的上下文类型
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextManager.GetEntityMappers(System.Type)">
+            <summary>
+            获取 实体映射集合
+            </summary>
+            <param name="dbContextType">上下文类型</param>
+            <returns>实体集合</returns>
+            <exception cref="T:System.InvalidOperationException">如果<c>dbContextType</c>不存在则抛出<c>InvalidOperationException</c>异常</exception>
+        </member>
+        <member name="T:OSharp.Data.Entity.DbContextTypeResolver">
+            <summary>
+            数据上下文类型获取器
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextTypeResolver.#ctor(OSharp.Core.Dependency.IIocResolver)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DbContextTypeResolver"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextTypeResolver.Resolve``2">
+            <summary>
+            由实体类型获取关联的上下文类型
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <typeparam name="TKey">实体主键类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextTypeResolver.Resolve(System.Type)">
+            <summary>
+            由实体类型获取关联的上下文类型
+            </summary>
+            <param name="entityType">实体类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.DefaultDbContextInitializer">
+            <summary>
+            默认 上下文初始化操作类
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.DefaultDbContext">
+            <summary>
+            默认 EntityFramework 数据上下文
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DefaultDbContext.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DefaultDbContext"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DefaultDbContext.#ctor(System.String)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DefaultDbContext"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DefaultDbContext.GetSlaveContext(System.String)">
+            <summary>
+            获取读库上下文
+            </summary>
+            <param name="readNameOrConnectionString">读库连接字符串</param>
+            <returns>读库上下文</returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.EntityConfigurationBase`2">
+            <summary>
+            数据实体映射配置基类
+            </summary>
+            <typeparam name="TEntity">动态实体类型</typeparam>
+            <typeparam name="TKey">动态主键类型</typeparam>
+        </member>
+        <member name="P:OSharp.Data.Entity.EntityConfigurationBase`2.DbContextType">
+            <summary>
+            获取 相关上下文类型，如为null，将使用默认上下文<see cref="T:OSharp.Data.Entity.DefaultDbContext"/>，否则使用指定的上下文类型
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.EntityConfigurationBase`2.RegistTo(System.Data.Entity.ModelConfiguration.Configuration.ConfigurationRegistrar)">
+            <summary>
+            将当前实体映射对象注册到当前数据访问上下文实体映射配置注册器中
+            </summary>
+            <param name="configurations">实体映射配置注册器</param>
+        </member>
+        <member name="T:OSharp.Data.Entity.ComplexTypeConfigurationBase`2">
+            <summary>
+            复合数据实体映射配置基类
+            </summary>
+            <typeparam name="TComplexType">动态复合实体类型</typeparam>
+            <typeparam name="TKey">动态主键类型</typeparam>
+        </member>
+        <member name="P:OSharp.Data.Entity.ComplexTypeConfigurationBase`2.DbContextType">
+            <summary>
+            获取 相关上下文类型，如为null，将使用默认上下文，否则使用指定的上下文类型
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.ComplexTypeConfigurationBase`2.RegistTo(System.Data.Entity.ModelConfiguration.Configuration.ConfigurationRegistrar)">
+            <summary>
+            将当前实体映射对象注册到当前数据访问上下文实体映射配置注册器中
+            </summary>
+            <param name="configurations">实体映射配置注册器</param>
+        </member>
+        <member name="T:OSharp.Data.Entity.EntityMapperAssemblyFinder">
+            <summary>
+            实体映射程序集查找器
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.EntityMapperAssemblyFinder.AllAssemblyFinder">
+            <summary>
+            获取或设置 所有程序集查找器
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.EntityMapperAssemblyFinder.Find(System.Func{System.Reflection.Assembly,System.Boolean})">
+            <summary>
+            查找指定条件的项
+            </summary>
+            <param name="predicate">筛选条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.EntityMapperAssemblyFinder.FindAll">
+            <summary>
+            查找所有项
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.AutoMapperExtension">
+            <summary>
+            AutoMapper 辅助扩展方法
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.AutoMapperExtension.MapTo``1(System.Object)">
+            <summary>
+            创建映射，使用源对象创建目标对象
+            </summary>
+            <typeparam name="TTarget">目标类型</typeparam>
+            <param name="source">源对象</param>
+            <returns>创建的目标对象</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.AutoMapperExtension.MapTo``2(``0,``1)">
+            <summary>
+            更新映射，使用源对象更新目标对象
+            </summary>
+            <typeparam name="TSource">源类型</typeparam>
+            <typeparam name="TTarget">目标类型</typeparam>
+            <param name="source">源对象</param>
+            <param name="target">要更新的目标对象</param>
+            <returns>更新后的目标对象</returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.DbContextExtensions">
+            <summary>
+            上下文扩展辅助操作类
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextExtensions.Update``2(System.Data.Entity.DbContext,``0[])">
+            <summary>
+            更新上下文中指定的实体的状态
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <typeparam name="TKey">主键类型</typeparam>
+            <param name="dbContext">上下文对象</param>
+            <param name="entities">要更新的实体类型</param>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextExtensions.Update``2(System.Data.Entity.DbContext,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},``0[])">
+            <summary>
+            按实体属性更新上下文中指定实体的状态
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <typeparam name="TKey">实体主键类型</typeparam>
+            <param name="dbContext">上下文对象</param>
+            <param name="propertyExpression">实体属性表达式，提供要更新的实体属性</param>
+            <param name="entities">附带新值的实体对象，必须包含主键</param>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextExtensions.GetEntityDataLogs(System.Data.Entity.DbContext,System.IServiceProvider)">
+            <summary>
+            获取数据上下文的变更日志信息
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextExtensions.GetEntityOperateLogsAsync(System.Data.Entity.DbContext,System.IServiceProvider)">
+            <summary>
+            异步获取数据上下文的变更日志信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextExtensions.GetAddedLog(System.Data.Entity.Core.Objects.ObjectStateEntry,OSharp.Core.Security.IEntityInfo)">
+            <summary>
+            获取添加数据的日志信息
+            </summary>
+            <param name="entry">实体状态跟踪信息</param>
+            <param name="entityInfo">实体数据信息</param>
+            <returns>新增数据日志信息</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextExtensions.GetModifiedLog(System.Data.Entity.Core.Objects.ObjectStateEntry,OSharp.Core.Security.IEntityInfo)">
+            <summary>
+            获取修改数据的日志信息
+            </summary>
+            <param name="entry">实体状态跟踪信息</param>
+            <param name="entityInfo">实体数据信息</param>
+            <returns>修改数据日志信息</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.DbContextExtensions.GetDeletedLog(System.Data.Entity.Core.Objects.ObjectStateEntry,OSharp.Core.Security.IEntityInfo)">
+            <summary>
+            获取删除数据的日志信息
+            </summary>
+            <param name="entry">实体状态跟踪信息</param>
+            <param name="entityInfo">实体数据信息</param>
+            <returns>删除数据日志信息</returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.IDbContextTypeResolver">
+            <summary>
+            定义数据上下文实例创建器
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.IDbContextTypeResolver.Resolve``2">
+            <summary>
+            由实体类型获取关联的上下文类型
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <typeparam name="TKey">实体主键类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.IDbContextTypeResolver.Resolve(System.Type)">
+            <summary>
+            由实体类型获取关联的上下文类型
+            </summary>
+            <param name="entityType">实体类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.IEntityMapper">
+            <summary>
+            实体映射接口
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.IEntityMapper.DbContextType">
+            <summary>
+            获取 相关上下文类型，如为null，将使用默认上下文，否则使用指定的上下文类型
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.IEntityMapper.RegistTo(System.Data.Entity.ModelConfiguration.Configuration.ConfigurationRegistrar)">
+            <summary>
+            将当前实体映射对象注册到当前数据访问上下文实体映射配置注册器中
+            </summary>
+            <param name="configurations">实体映射配置注册器</param>
+        </member>
+        <member name="T:OSharp.Data.Entity.IEntityMapperAssemblyFinder">
+            <summary>
+            定义实体映射程序集查找器
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Logging.DataLogConfiguration">
+            <summary>
+            数据日志映射配置
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Logging.DataLogConfiguration.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.Logging.DataLogConfiguration"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Logging.DataLogConfiguration.DbContextType">
+            <summary>
+            获取 相关上下文类型，如为null，将使用默认上下文，否则使用指定的上下文类型
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Logging.DataLogItemConfiguration">
+            <summary>
+            实体操作明细映射配置
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Logging.DataLogItemConfiguration.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.Logging.DataLogItemConfiguration"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Logging.DataLogItemConfiguration.DbContextType">
+            <summary>
+            获取 相关上下文类型，如为null，将使用默认上下文，否则使用指定的上下文类型
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Logging.LoggingDbContext">
+            <summary>
+            日志数据上下文
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Logging.LoggingDbContext.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DefaultDbContext"/>类型的新实例
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Logging.LoggingDbContext.#ctor(System.String)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.DefaultDbContext"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Logging.LoggingDbContext.DataLoggingEnabled">
+            <summary>
+            获取 是否允许数据库日志记录
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Logging.LoggingDbContext.GetSlaveContext(System.String)">
+            <summary>
+            获取读库上下文
+            </summary>
+            <param name="readNameOrConnectionString">读库连接字符串</param>
+            <returns>读库上下文</returns>
+        </member>
+        <member name="T:OSharp.Data.Entity.Logging.LoggingDbContextInitializer">
+            <summary>
+            日志上下文初始化操作类
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Logging.OperateLogConfiguration">
+            <summary>
+            操作日志映射配置
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Logging.OperateLogConfiguration.DbContextType">
+            <summary>
+            获取 相关上下文类型，如为null，将使用默认上下文，否则使用指定的上下文类型
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Migrations.AutoMigrationsConfiguration`1">
+            <summary>
+            自动迁移配置
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:OSharp.Data.Entity.Migrations.AutoMigrationsConfiguration`1.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.Migrations.AutoMigrationsConfiguration`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Migrations.CreateDatabaseIfNotExistsWithSeedBase`1">
+            <summary>
+            在数据库不存在时使用种子数据创建数据库
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Migrations.CreateDatabaseIfNotExistsWithSeedBase`1.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.Migrations.CreateDatabaseIfNotExistsWithSeedBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Migrations.CreateDatabaseIfNotExistsWithSeedBase`1.SeedActions">
+            <summary>
+            获取 数据迁移初始化种子数据操作信息集合，各个模块可以添加自己的数据初始化操作
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Migrations.ISeedAction">
+            <summary>
+            初始化种子数据接口
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Migrations.ISeedAction.Order">
+            <summary>
+            获取 操作排序，数值越小越先执行
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Migrations.ISeedAction.Action(System.Data.Entity.DbContext)">
+            <summary>
+            定义种子数据初始化过程
+            </summary>
+            <param name="context">数据上下文</param>
+        </member>
+        <member name="T:OSharp.Data.Entity.Migrations.MigrationsConfigurationWithSeedBase`1">
+            <summary>
+            数据迁移配置基类
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Migrations.MigrationsConfigurationWithSeedBase`1.#ctor">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.Migrations.MigrationsConfigurationWithSeedBase`1"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Migrations.MigrationsConfigurationWithSeedBase`1.SeedActions">
+            <summary>
+            获取 数据迁移初始化种子数据操作信息集合，各个模块可以添加自己的数据初始化操作
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.ContextTypeNotIUnitOfWorkType">
+            <summary>
+              查找类似 上下文类型“{0}”不是IUnitOfWork接口的派生类 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.DatabaseInitializer_TypeNotDatabaseInitializer">
+            <summary>
+              查找类似 类型“{0}”不是有效的上下文初始化类型 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.DbContextBase_ConnectionStringNameNotExist">
+            <summary>
+              查找类似 名称为“{0}”的数据库连接串不存在 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.DbContextInitializerBase_MapperAssembliesIsEmpty">
+            <summary>
+              查找类似 上下文“{0}”初始化失败，实体映射程序集不存在 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.DbContextManager_EntityTypeNotMaptoDbContext">
+            <summary>
+              查找类似 实体类型“{0}”未映射到上下文中，请为实体派生 EntityConfigurationBase&lt;&gt; 类型，使之能被数据上下文加载。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.DbContextManager_TypeNotDbContextType">
+            <summary>
+              查找类似 类型“{0}”不是 DbContextBase&lt;&gt; 类型的派生类 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.DbContextManager_TypeNotEntityType">
+            <summary>
+              查找类似 类型“{0}”不是实体类型 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.DbContextTypeResolver_DbContextResolveFailed">
+            <summary>
+              查找类似 实体类“{0}”所属的上下文“{1}”获取失败 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Properties.Resources.Repository_MethodNotSupportedTransaction">
+            <summary>
+              查找类似 仓储中的 {0} 方法不支持事务操作 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:OSharp.Data.Entity.Repository`2">
+            <summary>
+            EntityFramework的仓储实现
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <typeparam name="TKey">主键类型</typeparam>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.#ctor(OSharp.Data.Entity.IDbContextTypeResolver)">
+            <summary>
+            初始化一个<see cref="T:OSharp.Data.Entity.Repository`2"/>类型的新实例
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Repository`2.UnitOfWork">
+            <summary>
+            获取 当前单元操作对象
+            </summary>
+        </member>
+        <member name="P:OSharp.Data.Entity.Repository`2.Entities">
+            <summary>
+            获取 当前实体类型的查询数据集，数据将使用不跟踪变化的方式来查询
+            </summary>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Insert(`0)">
+            <summary>
+            插入实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Insert(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量插入实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Insert``1(System.Collections.Generic.ICollection{``0},System.Action{``0},System.Func{``0,`0,`0})">
+            <summary>
+            以DTO为载体批量插入实体
+            </summary>
+            <typeparam name="TAddDto">添加DTO类型</typeparam>
+            <param name="dtos">添加DTO信息集合</param>
+            <param name="checkAction">添加信息合法性检查委托</param>
+            <param name="updateFunc">由DTO到实体的转换委托</param>
+            <returns>业务操作结果</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Recycle(`0)">
+            <summary>
+            逻辑删除实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Recycle(`1)">
+            <summary>
+            逻辑删除指定编号的实体
+            </summary>
+            <param name="key">实体编号</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Recycle(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            逻辑删除所有符合特定条件的实体
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Recycle(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量逻辑删除实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Restore(`0)">
+            <summary>
+            逻辑还原实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Restore(`1)">
+            <summary>
+            逻辑还原指定编号的实体
+            </summary>
+            <param name="key">实体编号</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Restore(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            逻辑还原所有符合特定条件的实体
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Restore(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量逻辑还原实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Delete(`0)">
+            <summary>
+            删除实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Delete(`1)">
+            <summary>
+            删除指定编号的实体
+            </summary>
+            <param name="key">实体编号</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            删除所有符合特定条件的实体
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量删除实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Delete(System.Collections.Generic.ICollection{`1},System.Action{`0},System.Func{`0,`0})">
+            <summary>
+            以标识集合批量删除实体
+            </summary>
+            <param name="ids">标识集合</param>
+            <param name="checkAction">删除前置检查委托</param>
+            <param name="deleteFunc">删除委托，用于删除关联信息</param>
+            <returns>业务操作结果</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteDirect(`1)">
+            <summary>
+            直接删除指定编号的实体，此方法不支持事务
+            </summary>
+            <param name="key">实体主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteDirect(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            直接删除所有符合特定条件的实体，此方法不支持事务
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Update(`0)">
+            <summary>
+            更新实体对象
+            </summary>
+            <param name="entity">更新后的实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.Update``1(System.Collections.Generic.ICollection{``0},System.Action{``0},System.Func{``0,`0,`0})">
+            <summary>
+            以DTO为载体批量更新实体
+            </summary>
+            <typeparam name="TEditDto">更新DTO类型</typeparam>
+            <param name="dtos">更新DTO信息集合</param>
+            <param name="checkAction">更新信息合法性检查委托</param>
+            <param name="updateFunc">由DTO到实体的转换委托</param>
+            <returns>业务操作结果</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.UpdateDirect(`1,System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            直接更新指定编号的数据，此方法不支持事务
+            </summary>
+            <param name="key">实体编号</param>
+            <param name="updatExpression">更新属性表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.UpdateDirect(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            直接更新指定条件的数据，此方法不支持事务
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <param name="updatExpression">更新属性表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.CheckExists(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},`1)">
+            <summary>
+            检查实体是否存在
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <param name="id">编辑的实体标识</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.GetByKey(`1)">
+            <summary>
+            查找指定主键的实体
+            </summary>
+            <param name="key">实体主键</param>
+            <returns>符合主键的实体，不存在时返回null</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.GetByPredicate(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            查询指定条件的实体
+            </summary>
+            <param name="predicate">查询表达式</param>
+            <returns>符合条件的实体集合</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.GetInclude``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            获取贪婪加载导航属性的查询数据集
+            </summary>
+            <param name="path">属性表达式，表示要贪婪加载的导航属性</param>
+            <returns>查询数据集</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.GetIncludes(System.String[])">
+            <summary>
+            获取贪婪加载多个导航属性的查询数据集
+            </summary>
+            <param name="paths">要贪婪加载的导航属性名称数组</param>
+            <returns>查询数据集</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.SqlQuery(System.String,System.Boolean,System.Object[])">
+            <summary>
+            创建一个原始 SQL 查询，该查询将返回此集中的实体。 
+            默认情况下，上下文会跟踪返回的实体；可通过对返回的 DbRawSqlQuery 调用 AsNoTracking 来更改此设置。 请注意返回实体的类型始终是此集的类型，而不会是派生的类型。 如果查询的一个或多个表可能包含其他实体类型的数据，则必须编写适当的 SQL 查询以确保只返回适当类型的实体。 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 您提供的任何参数值都将自动转换为 DbParameter。 context.Set(typeof(Blog)).SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @p0", userSuppliedAuthor); 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。 context.Set(typeof(Blog)).SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));
+            </summary>
+            <param name="trackEnabled">是否跟踪返回实体</param>
+            <param name="sql">SQL 查询字符串。</param>
+            <param name="parameters">要应用于 SQL 查询字符串的参数。 如果使用输出参数，则它们的值在完全读取结果之前不可用。 这是由于 DbDataReader 的基础行为而导致的，有关详细信息，请参见 http://go.microsoft.com/fwlink/?LinkID=398589。</param>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.InsertAsync(`0)">
+            <summary>
+            异步插入实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.InsertAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            异步批量插入实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RecycleAsync(`0)">
+            <summary>
+            异步逻辑删除实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RecycleAsync(`1)">
+            <summary>
+            异步逻辑删除指定编号的实体
+            </summary>
+            <param name="key">实体编号</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RecycleAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            异步逻辑删除所有符合特定条件的实体
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RecycleAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            异步批量逻辑删除实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RestoreAsync(`0)">
+            <summary>
+            异步逻辑还原实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RestoreAsync(`1)">
+            <summary>
+            异步逻辑还原指定编号的实体
+            </summary>
+            <param name="key">实体编号</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RestoreAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            异步逻辑还原所有符合特定条件的实体
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.RestoreAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            异步批量逻辑还原实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteAsync(`0)">
+            <summary>
+            异步删除实体
+            </summary>
+            <param name="entity">实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteAsync(`1)">
+            <summary>
+            异步删除指定编号的实体
+            </summary>
+            <param name="key">实体编号</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            异步删除所有符合特定条件的实体
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            异步批量删除删除实体
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteDirectAsync(`1)">
+            <summary>
+            直接删除指定编号的实体，此方法不支持事务
+            </summary>
+            <param name="key">实体主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.DeleteDirectAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            直接删除所有符合特定条件的实体，此方法不支持事务
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.UpdateAsync(`0)">
+            <summary>
+            异步更新实体对象
+            </summary>
+            <param name="entity">更新后的实体对象</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.UpdateDirectAsync(`1,System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            直接更新指定编号的数据，此方法不支持事务
+            </summary>
+            <param name="key">实体编号</param>
+            <param name="updatExpression">更新属性表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.UpdateDirectAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            直接更新指定条件的数据，此方法不支持事务
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <param name="updatExpression">更新属性表达式</param>
+            <returns>操作影响的行数</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.CheckExistsAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},`1)">
+            <summary>
+            异步检查实体是否存在
+            </summary>
+            <param name="predicate">查询条件谓语表达式</param>
+            <param name="id">编辑的实体标识</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.GetByKeyAsync(`1)">
+            <summary>
+            异步查找指定主键的实体
+            </summary>
+            <param name="key">实体主键</param>
+            <returns>符合主键的实体，不存在时返回null</returns>
+        </member>
+        <member name="M:OSharp.Data.Entity.Repository`2.GetByPredicateAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            异步查询指定条件的实体
+            </summary>
+            <param name="predicate">查询表达式</param>
+            <returns>符合条件的实体集合</returns>
+        </member>
+        <member name="T:OSharp.Core.ServiceCollectionExtensions">
+            <summary>
+            服务映射集合扩展操作
+            </summary>
+        </member>
+        <member name="M:OSharp.Core.ServiceCollectionExtensions.AddDataServices(OSharp.Core.Dependency.IServiceCollection)">
+            <summary>
+            添加数据层服务映射信息
+            </summary>
+            <param name="services">服务映射信息集合</param>
+        </member>
+    </members>
+</doc>

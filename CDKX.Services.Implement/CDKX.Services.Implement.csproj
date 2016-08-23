@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E8A6B02-4D39-4664-B026-C37F375B69C2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CDKX.Services.Implement</RootNamespace>
+    <AssemblyName>CDKX.Services.Implement</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Beyova.Common, Version=3.0.0.0, Culture=neutral, PublicKeyToken=d55e8b6a979ee1b5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Beyova.Common.3.3.0\lib\Beyova.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bode.Plugin.Core">
+      <HintPath>..\CDKX.Frame.Bin\Bode.Plugin.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ifunction.JPush, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bode.Frame.Bin\ifunction.JPush.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSharp.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bode.Frame.Bin\OSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="OSharp.Data.Entity, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bode.Frame.Bin\OSharp.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="OSharp.Permissions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bode.Frame.Bin\OSharp.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="OSharp.Utility, Version=3.0.0.0, Culture=neutral, PublicKeyToken=e7429fb96767d50d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bode.Frame.Bin\OSharp.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbContext\DemoDbContext.cs" />
+    <Compile Include="DbContext\DemoDbContextInitializer.cs" />
+    <Compile Include="DbSeed\CreateCitySeedAction.cs" />
+    <Compile Include="DbSeed\CreateDatabaseIfNotExistsWithSeed.cs" />
+    <Compile Include="DbSeed\CreateSysRoleSeedAction.cs" />
+    <Compile Include="Helper\CdkxResult.cs" />
+    <Compile Include="ModelConfigs\Identity\SysOrganizationConfiguration.cs" />
+    <Compile Include="ModelConfigs\Identity\SysRoleConfiguration.cs" />
+    <Compile Include="ModelConfigs\Identity\SysUserConfiguration.cs" />
+    <Compile Include="ModelConfigs\Identity\SysUserRoleMapConfiguration.cs" />
+    <Compile Include="ModelConfigs\Identity\SysUserClaimConfiguration.cs" />
+    <Compile Include="ModelConfigs\Identity\SysUserLoginConfiguration.cs" />
+    <Compile Include="ModelConfigs\Security\EntityInfoConfiguration.cs" />
+    <Compile Include="ModelConfigs\Security\EntityRoleMapConfiguration.cs" />
+    <Compile Include="ModelConfigs\Security\EntityUserMapConfiguration.cs" />
+    <Compile Include="ModelConfigs\Security\FunctionConfiguration.cs" />
+    <Compile Include="ModelConfigs\Security\FunctionRoleMapConfiguration.cs" />
+    <Compile Include="ModelConfigs\Security\FunctionUserMapConfiguration.cs" />
+    <Compile Include="ModelConfigs\User\FeedBackConfiguration.cs" />
+    <Compile Include="ModelConfigs\User\ValidateCodeConfiguration.cs" />
+    <Compile Include="ModelConfigs\User\UserInfoConfiguration.cs" />
+    <Compile Include="Permissions\Identity\RoleStore.cs" />
+    <Compile Include="Permissions\Identity\UserManager.cs" />
+    <Compile Include="Permissions\Identity\UserStore.cs" />
+    <Compile Include="Permissions\Security\EntityMapStore.cs" />
+    <Compile Include="Permissions\Security\FunctionMapStore.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCollectionExtensions.cs" />
+    <Compile Include="Services\Identity\IdentityService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Identity\IdentityService.Organization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Identity\IdentityService.Role.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Identity\IdentityService.User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Logging\LoggingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Logging\LoggingService.DataLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Security\SecurityService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Security\SecurityService.EntityInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\Security\SecurityService.Function.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\User\UserService.Account.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\User\UserService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\User\UserService.generated.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="T4\Include\ServicesTemplate.cs">
+      <DependentUpon>ServicesTemplate.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="T4\ServicesCodeScript.cs">
+      <DependentUpon>ServicesCodeScript.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CDKX.Common\CDKX.Common.csproj">
+      <Project>{d6b5b374-333e-49cb-8d3a-b923c0f4c83f}</Project>
+      <Name>CDKX.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CDKX.Services.Core\CDKX.Services.Core.csproj">
+      <Project>{1f57a37a-9f0e-4fd7-8994-b431de2d5c04}</Project>
+      <Name>CDKX.Services.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="T4\Include\ServicesTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServicesTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="T4\ServicesCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServicesCodeScript.cs</LastGenOutput>
+      <LastOutputs>
+..\Services\User\UserService.generated.cs
+.\ServicesCodeScript.cs
+</LastOutputs>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.en-us.resx" />
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

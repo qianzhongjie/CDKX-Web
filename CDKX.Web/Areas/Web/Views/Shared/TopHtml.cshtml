@@ -1,0 +1,184 @@
+﻿@using Bode.Services.Core.Models.Identity
+<section class="win-bar">
+    <div class="bar-con">
+        <div class="bar-icon p-transition">
+            <span class="icon-txt f-16">联系客服</span>
+            <a href="javascript:;" class="icon" onclick="hideToolbarMsg()"><i class="Hui-iconfont Hui-iconfont-kefu"></i></a>
+        </div>
+        <div class="bar-icon p-transition">
+            <span class="icon-txt f-16">扫码下载</span>
+            <a href="javascript:void(0)" class="icon"><i class="Hui-iconfont Hui-iconfont-saoyisao"></i></a>
+        </div>
+        <div class="bar-icon p-transition">
+            <span class="icon-txt f-16">回到顶部</span>
+            <a href="#" class="icon"><i class="Hui-iconfont Hui-iconfont-arrow2-top"></i></a>
+        </div>
+    </div>
+</section>
+<header id="head" class="pos-f">
+    <div class="head clearfix ">
+        <a href="@Url.Action("Index","Home")">
+            <div class="logo head-logoC  l">
+            </div>
+        </a>
+        <div class="head-nav  l">
+            <ul class="nav clearfix f-16" id="topMulu">
+                <li class="l"><a href="@Url.Action("Index","Home")" c class="p-colorW active">首页</a></li>
+                <li class="l"><a href="@Url.Action("GoodsIndex","Goods")" class="p-colorW">必买好货</a></li>
+                <li class="l"><a href="@Url.Action("PresellIndex","Goods")" class="p-colorW">新品预售</a></li>
+                <li class="l"><a href="@Url.Action("Index","Online")" class="p-colorW">在线设计</a></li>
+                <li class="l"><a href="@Url.Action("AboutUs", "Home")" class="p-colorw">关于我们</a></li>
+            </ul>
+        </div>
+        <div class="head-bar  l clearfix">
+            <div class="bar-login l pos-r">
+                @{
+                    if (Request.IsAuthenticated)
+                    {
+                        if (ViewBag.UserType == UserType.App用户)
+                        {
+                            <a href="#" class="p-colorW pr-10" id="LoginState" onclick="toAccount()">@ViewBag.NickName</a>
+                            <a href="/Web/Home/SignOut" class="p-colorW drop-out" id=""></a>
+                        }
+                        else
+                        {
+                            FormsAuthentication.SignOut();
+                            @*<a href="#" class="p-colorW pr-10" id="loginBtn">登录</a>*@
+                            <a href="/Web/Home/Login" class="p-colorW pr-10">登录</a>
+                            <a href="/Web/Home/Login?st=2" class="p-colorW" id="registerBtn">注册</a>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Web/Home/Login" class="p-colorW pr-10">登录</a>
+                        <a href="/Web/Home/Login?st=2" class="p-colorW" id="registerBtn">注册</a>
+                    }
+                }
+            </div>
+            <div class="shop bar-shop r" id="bagSum" onclick="toShoppingBag()">
+            </div>
+        </div>
+    </div>
+</header>
+<!-- register and login -->
+<!-- alertBox -->
+
+<section class="alertBox maskBox hidden" id="shade"></section>
+<section class="alertBox maskBox hidden" id="msgBox">
+    <div class="box pd-10">
+        <a href="#" class="p-db text-r" id="close">关闭</a>
+        <p class="box-title text-c lh-20 f-18 pt-5 pb-10">提示</p>
+        <div class="box-con f-14 pd-10 text-l" id="msgText">
+
+        </div>
+        <div class="box-btn text-r f-16">
+            <a href="#" class="btn-yes p-dlb mr-20" id="tureMsg">确定</a>
+            <a href="#" class="btn-no p-dlb" id="closeMsg">取消</a>
+        </div>
+    </div>
+</section>
+<!-- //alertBox -->
+<script type="text/javascript" src="~/Content/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript">
+    //跳转个人中心
+    function toAccount() {
+        window.location.href = '/Web/Account/Account';
+        //$.get('/Web/Account/Account', function (data) {
+
+        //    if (data === "请登录") {
+        //        $('.mask').css('display', 'block');
+        //        $("#loginBox").css('display', 'block');
+        //    } else {
+        //        window.location.href = '/Web/Account/Account';
+        //    }
+        //});
+    }
+    //跳转客服
+    function hideToolbarMsg() {
+        window.open("/Web/Home/ToBarMsg");
+    }
+
+    //获取cookie
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    //$('.alertBox').click(function () {
+    //    $('.alertBox').fadeOut(200);
+    //});
+    //$('#close').click(function () {
+    //    $('.alertBox').fadeOut(200);
+    //});
+    function showShoppingBagCount() {
+        $.post("/Web/Goods/GetShoppingCartCount", function (data) {
+            if (data.ReturnData > 0) {
+                $("#bagSum").addClass('pos-r');
+                $("#bagSum").html('<span class="shop-num f-12">' + data.ReturnData + '</span>');
+            }
+        }, "json");
+    };
+
+    //msg show
+    function showMsgBox(content) {
+        $("#msgText").html(content);
+        $("#msgBox").removeClass('hidden').show();;
+    }
+
+    function showSade() {
+        $("#shade").removeClass('hidden').show();
+    }
+
+    function hideSade() {
+        $("#shade").hide();
+    }
+
+    $("#tureMsg").click(function () {
+        $("#msgBox").addClass('hidden');
+        $('#shade').hide();
+    });
+    $("#closeMsg").click(function () {
+        $("#msgBox").addClass('hidden');
+        $('#shade').hide();
+    });
+    $("#close").click(function () {
+        $("#msgBox").addClass('hidden');
+        $('#shade').hide();
+    });
+    showShoppingBagCount();
+
+    function toShoppingBag() {
+        window.location.href = "@Url.Action("ShoppingCart", "GoodsStore")";
+    }
+
+    //加入购物车
+    function addShoppingBag(goodsId, sizeInfoId, colorId, pressCount, type) {
+
+        var obj = {
+            GoodsInfoId: goodsId,
+            PresellGoodsSizeId: sizeInfoId,
+            ColorId: colorId,
+            PressCount: pressCount,
+        }
+        $.post("@Url.Action("AddToShonppingBag", "Goods")", { dto: obj }, function (data) {
+
+            if (data.ReturnCode === 1) {
+                showShoppingBagCount();
+                location.href = "@Url.Action("ShoppingBag", "PresellGoods")";
+            } else {
+                if (data === 'no') {
+                    window.location.href = "/Web/Home/Login";
+                    return;
+                }
+                showShoppingBagCount();
+                showMsgBox("服务器繁忙，请稍后再试");
+            }
+
+        });
+    }
+</script>

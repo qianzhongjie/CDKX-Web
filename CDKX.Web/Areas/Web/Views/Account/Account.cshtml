@@ -1,0 +1,1001 @@
+﻿@{
+    Layout = null;
+    var userInfo = (Bode.Services.Core.Models.User.UserInfo)ViewBag.UserInfo;
+    List<Bode.Services.Core.Models.CustomUser.Position> positions = ViewBag.Positions;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <!-- 屏幕适配 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- webapp -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 启用webkit内核模式浏览器 -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 页面关键字 -->
+    <meta name="keywords" content="" />
+    <!-- 页面描述 -->
+    <meta name="description" content="" />
+
+    <link href="~/Content/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/public.css" rel="stylesheet" />
+    <link href="~/Content/css/header.css" rel="stylesheet" />
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/personal.css">  <!-- personal -->
+    <link href="~/Content/css/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/css/icheck.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+
+
+    <script src="~/Content/bower/jquery.1.9.1.min.js"></script>
+    <script src="~/Content/js/jquery.datetimepicker.js"></script>
+    <script src="~/Content/bower/jquery.icheck.min.js"></script>
+    <script src="~/Content/bower/H-ui.js"></script>
+    <script src="~/Content/bower/jquery.jcarousellite.min.js"></script>
+    <script src="~/Content/js/PCASClass.js"></script>
+    <script src="~/Content/js/personal.js"></script>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../bower/html5.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        #head {
+            background-color: #fff;
+            border-bottom: 2px #f6f6f6 solid;
+            top: 0px;
+        }
+
+        .head-logo {
+            background: url(/Content/images/index-bgs.png) no-repeat -151px 0px;
+            width: 127px;
+            padding-top: 69px;
+        }
+
+        .head-bar .bar-login {
+            border-color: #333;
+            color: #333;
+        }
+
+            .head-nav > ul > li a, .head-bar .bar-login a {
+                color: #333;
+            }
+
+        .head-bar .bar-shop {
+            background: url(/Content/images/index-bgs.png) no-repeat -836px 0px;
+            width: 24px;
+            padding-top: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- win-bar -->
+    @RenderPage("~/Areas/Web/Views/Shared/TopHtml.cshtml")
+    <!-- //header -->
+
+    <div class="personal cl con pos-r">
+        <div class="personalBar l">
+            <div class="personal-btn pl-20">
+                <div class="personal-btn-one styleall mb-20">
+                    <p class='f-14 p-colorH'>个人中心</p>
+                </div>
+                <div class="personal-btn-some style1 mb-20">
+                    <ul class="pl-10 f-12 lh-22">
+                        <li><a href="javascript:void(0);" class="p-colorH list-active">我的作品</a></li>
+                        <li><a href="javascript:void(0);" class="p-colorH">订单</a></li>
+                        <li><a href="javascript:void(0);" class="p-colorH">我的售后</a></li>
+                        <li><a href="javascript:void(0);" class="p-colorH">个人信息</a></li>
+                        <li><a href="javascript:void(0);" class="p-colorH">账户安全</a></li>
+                        <li><a href="javascript:void(0);" class="p-colorH">收货地址</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="personalCon  l">
+            <div class="personalCon-bar mb-50">
+                <p class="f-16 mb-20">
+                    我的作品(<span>@positions.Count()</span>)
+                </p>
+                <ul class="mywork">
+                    @{
+                        foreach (Bode.Services.Core.Models.CustomUser.Position position in positions)
+                        {
+                            List<Bode.Services.Core.Models.CustomMade.Material> materials = ViewBag.Mater;
+
+                    <li class="goods-car cl pd-20 pos-r aaaaa">
+                        <div class="close-btn" data-id="@position.Id" onclick="deletePosition(this)"></div>
+                        <div class="check-box check-item" data-id="@position.Id">
+                            <input type="checkbox" name="checkbox" id="checkbox" class="checkBox l round ">
+                        </div>
+                        <div class="goods-pic l  text-c mr-20">
+                            <img src="@position.Cover">
+                        </div>
+                        <div class="goods-fun l col-4-3 cl">
+                            <div class="goods-fun-title f-18 pt-20 pb-20">
+                                @position.Name
+                                <p class="text-r p-colorR r">￥<span class="price">@position.Price</span></p>
+                            </div>
+                            <div class="goods-fun-tab pt-20 pl-20">
+                                <ul class="cl p-colorH lh-24 goodsData">
+                                    @*<li class="l col-3-1 ">跟高：<span class="HeelHight">高跟(5-8cm)</span></li>*@
+                                    <li class="l col-3-1">配饰：<span class="gAcc">@materials.Single(x => x.Id == position.AccMaterial).Name</span> </li>
+                                    @*<li class="l col-3-1"> 内里材质：<span class="gInMaterial">人造革/PU</span></li>*@
+                                    @{
+                            if (position.FaceMaterial != null)
+                            {
+                                            <li class="l col-3-1">鞋面材质：<span class="gMaterial">@materials.First(x => x.Id == position.FaceMaterial.MaterialId).Name</span></li>
+                                            <li class="l col-3-1">鞋底材质：<span class="gsoleMaterial">@materials.First(x => x.Id == position.HeelMaterial.MaterialId).Name</span></li>
+                            }
+
+                            {
+                                            <li class="l col-3-1">鞋面材质：<span class="gMaterial">无</span></li>
+                                            <li class="l col-3-1">鞋底材质：<span class="gsoleMaterial">无</span></li>
+                            }
+                                    }
+
+
+                                </ul>
+                            </div>
+                            <div class="addgoodCar f-16 text-r r" onclick="positionToGoods('@position.Id')">加入购物车</div>
+                        </div>
+                    </li>
+                        }
+                    }
+                    @{if (positions.Count() > 0)
+                    {
+                    <div class="f-16 p-colorH p-pointer">
+                        <div class="check-box p-dlb checkall">
+                            <input type="checkbox" name="checkbox" id="checkbox2" class="checkBox l round" onclick="selecetAll(this)">
+                            <label for='checkbox2' class="f-16">
+                                全选
+                            </label>
+                        </div>
+                        <div class="delet p-dlb" id="delete" onclick="deleteAll()">删除选中的产品</div>
+                    </div>
+                    }}
+                </ul>
+            </div>
+
+            <div class="personalCon-bar" id="tab-order">
+                <p class="f-16 mb-20">订单</p>
+                <ul class="cl mb-40 tabBar" id="orderUl">
+                    <li class="l mr-50 current">
+                        <a href="javascript:void(0);" class="l mr-50 p-colorH f-14 t-list disAll" data-id="0">全部订单</a>
+                    </li>
+                    <li class="l mr-50">
+                        <a href="javascript:void(0);" class="p-colorH f-14 t-list"  data-id="1">待付款</a>
+                    </li>
+                    <li class="l mr-50">
+                        <a href="javascript:void(0);" class="p-colorH f-14 t-list"  data-id="2">待生产</a>
+                    </li>
+                    <li class="l mr-50">
+                        <a href="javascript:void(0);" class="p-colorH f-14 t-list"  data-id="3">生产中</a>
+                    </li>
+                    <li class="l mr-50">
+                        <a href="javascript:void(0);" class="p-colorH f-14 t-list"  data-id="4">待收货</a>
+                    </li>
+                    <li class="l mr-50">
+                        <a href="javascript:void(0);" class="p-colorH f-14 t-list"  data-id="5">已完成</a>
+                    </li>
+                    <li class="l mr-50">
+                        <a href="javascript:void(0);" class="p-colorH f-14 t-list"  data-id="6">已取消</a>
+                    </li>
+                </ul>
+                <div class="bar" id="bar0">
+
+                </div>
+                <div class="bar" id="bar1">
+
+                </div>
+                <div class="bar" id="bar2">
+
+                </div>
+                <div class="bar" id="bar3">
+
+                </div>
+                <div class="bar" id="bar4">
+
+                </div>
+                <div class="bar" id="bar5">
+
+                </div>
+                <div class="bar" id="bar6">
+
+                </div>
+            </div>
+            <!-- 我的售后-->
+            <div class="personalCon-bar" id="tab-custom">
+                <p class="f-16 mb-20">我的售后</p>
+            <ul class="cl mb-40 tabBar" id="shouhouUl">
+                <li class="l mr-50">
+                    <a class="l mr-50 f-14 p-colorH disAll" data-id="0">全部售后</a>
+                </li>
+                <li class="l mr-50">
+                    <a href="javascript:void(0);" class="p-colorH f-14" data-id="1">审核中</a>
+                </li>
+                <li class="l mr-50">
+                    <a href="javascript:void(0);" class="p-colorH f-14" data-id="2">退货中</a>
+                </li>
+                <li class="l mr-50">
+                    <a href="javascript:void(0);" class="p-colorH f-14" data-id="3">退货失败</a>
+                </li>
+                <li class="l mr-50">
+                    <a href="javascript:void(0);" class="p-colorH f-14" data-id="4">退货成功</a>
+                </li>
+            </ul>
+            <div class="bar" id="s_bar0">
+            </div>
+                    <!-- 审核中 -->
+                    <div class="bar" id="s_bar1">
+                    </div>
+                    <!--退货中-->
+                    <div class="bar goods" id="s_bar2">
+                    </div>
+                    <!--退货失败-->
+                <div class="bar" id="s_bar3">
+                </div>
+                    <!--退货成功-->
+                <div class="bar" id="s_bar4">
+                </div>
+                </div>
+            <!-- 个人信息-->
+            <div class="personalCon-bar">
+                <p class="f-16 mb-40">个人信息</p>
+                <form id="personalVaild" action="" method="post">
+                    <ul class="personal-info">
+                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                            <div>
+                                <span class="p-dlb w-80">手机号</span><span class="dot">:</span><span class="result" id="phoneNo3">@userInfo.SysUser.UserName</span>
+                            </div>
+                        </li>
+                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                            <div class="viewShow">
+                                <span class="p-dlb w-80">昵称</span><span class="dot">:</span><span class="result">@userInfo.SysUser.NickName</span>
+                                <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span class="">编辑</span></div>
+                            </div>
+                            <div class="viewShow hide">
+                                <span class="p-dlb w-80">昵称</span>
+                                <div class="skin-minimal p-dlb">
+                                    <input type="text" placeholder="" class="input-text size-M" id="NickName" name="username" value="@userInfo.SysUser.NickName">
+                                </div>
+                                <div class="skin-minimal mt-40">
+                                    <span class="p-dlb w-80"></span>
+                                    <a href="javascript:void(0);" class="p-dlb Btn mr-35 accNex">取消</a>
+                                    <a href="javascript:void(0);" class="p-dlb Btn getVal">确定</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                            <div class="viewShow">
+                                <span class="p-dlb w-80">性别</span><span class="dot">:</span><span class="result">
+                                    @{
+                                        var sexString = userInfo.Sex == Bode.Services.Core.Models.User.Sex.男 ? "男" : userInfo.Sex == Bode.Services.Core.Models.User.Sex.女 ? "女" : "保密";}@sexString
+                                    </span>
+                                    <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span class="">编辑</span></div>
+                                </div>
+                                <div class="viewShow hide">
+                                    <span class="p-dlb w-80">性别</span>
+                                    <div class="skin-minimal p-dlb">
+                                        <div class="radio-box">
+                                            <input type="radio" id="radio-1" name="demo-radio1">
+                                            <label for="radio-1" data-id="1">男</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" id="radio-1" name="demo-radio1">
+                                            <label for="radio-1" data-id="2">女</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" id="radio-1" name="demo-radio1">
+                                            <label for="radio-1" data-id="0">保密</label>
+                                        </div>
+                                    </div>
+                                    <div class="skin-minimal mt-40">
+                                        <span class="p-dlb w-80"></span>
+                                        <a href="javascript:void(0);" class="p-dlb Btn mr-35 accNex">取消</a>
+                                        <a href="javascript:void(0);" class="p-dlb Btn sex">确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                <div class="viewShow">
+                                    <span class="p-dlb w-80">生日</span><span class="dot">:</span><span class="result">
+                                        @{
+                                            var birthday = "";
+                                            if (userInfo.Birthday != null)
+                                            {
+                                                birthday = DateTime.Parse(userInfo.Birthday.ToString()).ToString("yyyy/MM/dd");
+                                            }
+                                        }
+                                        @birthday
+                                    </span>
+                                    <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span class="">编辑</span></div>
+                                </div>
+                                <div class="viewShow hide">
+                                    <span class="p-dlb w-80">生日</span>
+                                    <input type="text" id="datetimepicker2" class="" />
+                                    <div class="skin-minimal mt-40">
+                                        <span class="p-dlb w-80"></span>
+                                        <a href="javascript:void(0);" class="p-dlb Btn mr-35 accNex">取消</a>
+                                        <a href="javascript:void(0);" class="p-dlb Btn getSelect">确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                <div class="viewShow">
+                                    <span class="p-dlb w-80">联系电话</span><span class="dot">:</span><span class="result">@userInfo.SysUser.PhoneNumber</span>
+                                    <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span class="">编辑</span></div>
+                                </div>
+                                <div class="viewShow hide">
+                                    <span class="p-dlb w-80">联系电话</span>
+                                    <div class="skin-minimal p-dlb">
+                                        <input type="text" placeholder="" class="input-text size-M" id="tele" name="tele" value="@userInfo.SysUser.PhoneNumber">
+                                    </div>
+                                    <div class="skin-minimal mt-40">
+                                        <span class="p-dlb w-80"></span>
+                                        <a href="javascript:void(0);" class="p-dlb Btn mr-35 accNex">取消</a>
+                                        <a href="javascript:void(0);" class="p-dlb Btn getVal">确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="f-14 pb-20 mb-20 p-colorB bt hidden">
+                                <div class="viewShow">
+                                    <span class="p-dlb w-80">邮箱</span><span class="dot">:</span><span class="result">
+                                        @userInfo.SysUser.Email
+                                    </span>
+                                    <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span class="">绑定</span></div>
+                                </div>
+                                <div class="viewShow hide">
+                                    <span class="p-dlb w-80">邮箱</span>
+                                    <div class="skin-minimal p-dlb">
+                                        <input type="email" id="Email" name="email" placeholder="" class="input-text size-M" value="@userInfo.SysUser.Email">
+                                    </div>
+                                    <div class="skin-minimal mt-40">
+                                        <span class="p-dlb w-80"></span>
+                                        <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                        <a href="javascript:void(0);" class="p-dlb    Btn getVal">确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                <div class="viewShow">
+                                    <span class="p-dlb w-80">QQ</span><span class="dot">:</span><span class="result">@userInfo.Qq</span>
+                                    <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span class="">编辑</span></div>
+                                </div>
+                                <div class="viewShow hide">
+                                    <span class="p-dlb w-80">QQ</span>
+                                    <div class="skin-minimal p-dlb">
+                                        <input type="text" placeholder="" class="input-text size-M" name="QQ" id="QQ" value="@userInfo.Qq">
+                                    </div>
+                                    <div class="skin-minimal mt-40">
+                                        <span class="p-dlb w-80"></span>
+                                        <a href="javascript:void(0);" class="p-dlb  Btn mr-35 accNex">取消</a>
+                                        <a href="javascript:void(0);" class="p-dlb  Btn getVal">确定</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="add_addr text-c mt-20">
+                            <a href="javascript:void();" class=" Btn" onclick="saveInfo()">保存修改</a>
+                        </div>
+                    </form>
+                </div>
+                <!--账号安全-->
+                <div class="accountCon-bar personalCon-bar">
+                    <p class="f-16 mb-40">账号安全</p>
+                    <ul>
+                        <li class="f-16 pb-20 mb-20 p-colorB bt">
+                            <form id="accountOneValid" action="" method="post">
+                                <div class="viewShow account-info-0">
+                                    <span class="p-dlb w-80">手机号</span><span class="dot">:</span>
+                                    <span class="ml-20" id="phoneNo1">
+                                        @{
+                                            string phoneNo = "";
+                                            if (!string.IsNullOrWhiteSpace(userInfo.SysUser.PhoneNumber))
+                                            {
+                                                phoneNo = userInfo.SysUser.PhoneNumber.Substring(0, 3) + "****" + userInfo.SysUser.PhoneNumber.Substring(userInfo.SysUser.PhoneNumber.Length - 4, 4);
+                                            }}@phoneNo
+                                        </span>
+                                        <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                                    </div>
+                                    <div class="viewShow account-info-1 hide">
+                                        <span class="p-dlb w-80">手机号</span>
+                                        <div class="skin-minimal p-dlb">
+                                            <span class="ml-14">已绑定手机号：</span>
+                                            <span id="phoneNo2">@phoneNo</span>
+                                        </div>
+                                        <div class="skin-minimal m28 pos-r">
+                                            <span class="p-dlb w-80"></span>
+                                            <input type="password" placeholder="输入登录密码" class="input-text radius size-M input" id="cvOnePass" name="cvOnePass">
+                                        </div>
+                                        <div class="skin-minimal mt-40">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal" data-pwd="">下一步</a>
+                                        </div>
+                                    </div>
+                                    <div class="viewShow account-info-2 hide">
+                                        <span class="p-dlb w-80">手机号</span>
+                                        <input type="text" placeholder="输入新手机号" class="input-text radius size-M input p-dlb" id="cvOneTele1" name="cvOneTele1" data-name="@userInfo.SysUser.UserName" />
+                                        <div class="captcha mt-20">
+                                            <span class="p-dlb w-80"></span>
+                                            <input type="text" placeholder="输入短信验证码" class="input-text radius size-M input" id="cvOneTele2" name="cvOneTele2" />
+                                            <a href="javascript:void(0);" class="p-dlb" onclick="sendValidateCode(this,3);">获取验证码</a>
+                                        </div>
+                                        <div class="skin-minimal mt-40">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-40 accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal" data-va="1">下一步</a>
+                                        </div>
+                                    </div>
+                                    <div class="viewShow account-info-3 hide">
+                                        <span class="p-dlb w-80">手机号</span>
+                                        <h4>您的手机号已修改成功！</h4>
+                                        <div class="skin-minimal">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-35 invisible accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn accNex">完成</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                            <li class="f-16 pb-20 mb-20 p-colorB bt">
+                                <form id="accountTwoValid" action="" method="post">
+                                    <div class="viewShow account-info-0">
+                                        <span class="p-dlb w-80">密码</span><span class="dot">:</span>
+                                        <span class="ml-20">*******</span>
+                                        <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10  editN"></a><span>编辑</span></div>
+                                    </div>
+                                    <div class="viewShow account-info-1 hide">
+                                        <span class="p-dlb w-80">登录密码</span>
+                                        <div class="skin-minimal p-dlb">
+                                            <span class="ml-14">已绑定手机号：</span>
+                                            <span>@phoneNo</span>
+                                        </div>
+                                        <div class="captcha m28">
+                                            <span class="p-dlb w-80"></span>
+                                            <input type="text" placeholder="输入验证码" class="input-text radius size-M input" name="cvTwoTele" id="cvTwoTele">
+                                            <a href="javascript:void(0);" class="p-dlb" onclick="sendValidateCode(this,2);">获取验证码</a>
+                                        </div>
+                                        <div class="skin-minimal mt-40">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal">下一步</a>
+                                        </div>
+                                    </div>
+                                    <div class="viewShow account-info-2 hide">
+                                        <span class="p-dlb w-80">新的密码</span>
+                                        <div class="skin-minimal p-dlb">
+                                            <input type="password" placeholder="输入新密码" class="input-text radius size-M input" id="cvTwoPass" name="cvTwoPass">
+                                        </div>
+                                        <div class="skin-minimal mt-40">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-40 accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal" data-va="2">下一步</a>
+                                        </div>
+                                    </div>
+                                    <div class="viewShow account-info-3 hide">
+                                        <span class="p-dlb w-80">登录密码</span>
+                                        <h4>您的登录密码已重置！</h4>
+                                        <div class="skin-minimal">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-35 invisible accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal">完成</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                            <li class="f-16 pb-20 mb-20 p-colorB bt">
+                                <form id="accountThreeValid" action="" method="post">
+                                    <div class="viewShow account-info-0">
+                                        <span class="p-dlb w-80">邮箱</span><span class="dot">:</span>
+                                        <span class="ml-20" id="Email_e">@userInfo.SysUser.Email</span>
+                                        <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                                    </div>
+                                    <div class="viewShow account-info-1 hide">
+                                        <span class="p-dlb w-80">邮箱</span>
+                                        <div class="skin-minimal p-dlb">
+                                            <span class="ml-14">已绑定手机号：</span>
+                                            <span>@phoneNo</span>
+                                        </div>
+                                        <div class="captcha m28">
+                                            <span class="p-dlb w-80"></span>
+                                            <input type="text" placeholder="输入验证码" class="input-text radius size-M input" name="cvThreeTele" id="cvThreeTele">
+                                            <a href="javascript:void(0);" class="p-dlb" onclick="sendValidateCode(this,2);">获取验证码</a>
+                                        </div>
+                                        <div class="skin-minimal mt-40">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal" data-va="4">下一步</a>
+                                        </div>
+                                    </div>
+                                    <div class="viewShow account-info-2 hide">
+                                        <span class="p-dlb w-80">邮箱</span>
+                                        <div class="skin-minimal p-dlb">
+                                            <input type="email" placeholder="输入新邮箱" class="input-text radius size-M input" name="cvThreeEmail" id="cvThreeEmail">
+                                        </div>
+                                        <div class="skin-minimal mt-40">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-40 accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal" data-va="3">下一步</a>
+                                        </div>
+                                    </div>
+                                    <div class="viewShow account-info-3 hide">
+                                        <span class="p-dlb w-80">邮箱</span>
+                                        <h4>已发送验证邮件至<a href="javascript:void(0);" class="" id="Email_d"></a>!</h4>
+                                        <h5>验证邮件24小时内有效，请尽快登录您的邮箱点击验证链接完成验证。</h5>
+                                        <div class="skin-minimal">
+                                            <span class="p-dlb w-80"></span>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn mr-35 invisible accRet">取消</a>
+                                            <a href="javascript:void(0);" class="p-dlb    Btn getAccoVal">完成</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--收货地址-->
+                    <div class="addressCon-bar personalCon-bar">
+                        <p class="f-16 mb-40" id="p_address">收货地址</p>
+                        @{
+                            foreach (Bode.Services.Core.Models.Delivery.DeliveryAddress address in ViewBag.Address)
+                            {
+                                <form id="addressVaild" action="" method="post" name="addressVaild">
+                                    <ul class="address-info">
+                                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                            <div class="viewShow">
+                                                <span class="p-dlb w-80">收货人</span><span class="dot">:</span><span class="result">@address.Consignee</span>
+                                                <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                                            </div>
+                                            <div class="viewShow hide">
+                                                <span class="p-dlb w-80">收货人</span>
+                                                <div class="skin-minimal p-dlb">
+                                                    <input type="text" placeholder="" class="input-text size-M" id="avUsername" name="avUsername" value="@address.Consignee" data-db="Consignee">
+                                                </div>
+                                                <div class="skin-minimal mt-40">
+                                                    <span class="p-dlb w-80"></span>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn getVal" onclick="editAddress(this)" data-name="Consignee" data-id="@address.Id">确定</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                            <div class="viewShow">
+                                                <span class="p-dlb w-80">收货人电话</span><span class="dot">:</span><span class="result">@address.PhoneNo</span>
+                                                <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                                            </div>
+                                            <div class="viewShow hide">
+                                                <span class="p-dlb w-80">收货人电话</span>
+                                                <div class="skin-minimal p-dlb">
+                                                    <input type="text" placeholder="" class="input-text size-M" id="avTele" name="avTele" value="@address.PhoneNo" data-db="PhoneNo">
+                                                </div>
+                                                <div class="skin-minimal mt-40">
+                                                    <span class="p-dlb w-80"></span>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn getVal" onclick="editAddress(this)" data-name="PhoneNo" data-id="@address.Id">确定</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                            <div class="viewShow">
+                                                <span class="p-dlb w-80">所在地区</span><span class="dot">:</span><span class="result">
+                                                    @address.Province - @address.City - @address.District
+                                                </span>
+                                                <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                                            </div>
+                                            <div class="viewShow hide">
+                                                <span class="p-dlb w-80">所在地区</span>
+                                                <select name="selectPro_@address.Id" class="select-box" id="selectPro_@address.Id"></select>
+                                                <select name="selectCity_@address.Id" class="select-box" id="selectCity_@address.Id"></select>
+                                                <select name="selectDis_@address.Id" class="select-box" id="selectDis_@address.Id"></select>
+                                                <script type="text/javascript">
+                                                    $(function () {
+                                                        new PCAS("selectPro_@address.Id", "selectCity_@address.Id", "selectDis_@address.Id");
+                                                        $.each($("#selectPro_@address.Id").find('option'), function (v, d) {
+                                                            if ($(d).val() === '@address.Province') {
+                                                                $(this).attr('selected', "selected");
+                                                                $(this).parent().change();
+                                                            }
+                                                        });
+                                                        $.each($("#selectCity_@address.Id").find('option'), function (v, d) {
+                                                            if ($(d).val() === '@address.City') {
+                                                                $(this).attr('selected', "selected");
+                                                                $(this).parent().change();
+                                                            }
+                                                        });
+                                                        $.each($("#selectDis_@address.Id").find('option'), function (v, d) {
+                                                            if ($(d).val() === '@address.District') {
+                                                                $(this).attr('selected', "selected");
+                                                                $(this).parent().change();
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                                <div class="skin-minimal mt-40">
+                                                    <span class="p-dlb w-80"></span>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn getSelect" onclick="editAddress(this)" data-name="Province" data-id="@address.Id">确定</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                            <div class="viewShow">
+                                                <span class="p-dlb w-80">详细地址</span><span class="dot">:</span><span class="result">@address.ShipAddress</span>
+                                                <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                                            </div>
+                                            <div class="viewShow hide">
+                                                <span class="p-dlb w-80">详细地址</span>
+                                                <div class="skin-minimal p-dlb">
+                                                    <input type="text" placeholder="" class="input-text size-M" id="avAddress" name="avAddress" value="@address.ShipAddress">
+                                                </div>
+                                                <div class="skin-minimal mt-40">
+                                                    <span class="p-dlb w-80"></span>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn getVal" onclick="editAddress(this)" data-name="ShipAddress" data-id="@address.Id">确定</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="f-14 pb-20 mb-20 p-colorB bt">
+                                            <div class="viewShow">
+                                                <span class="p-dlb w-80">邮编</span><span class="dot">:</span><span class="result">@address.PostCode</span>
+                                                <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                                            </div>
+                                            <div class="viewShow hide">
+                                                <span class="p-dlb w-80">邮编</span>
+                                                <div class="skin-minimal p-dlb">
+                                                    <input type="text" placeholder="" class="input-text size-M" id="avPostcode" name="avPostcode" value="@address.PostCode">
+                                                </div>
+                                                <div class="skin-minimal mt-40">
+                                                    <span class="p-dlb w-80"></span>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                                    <a href="javascript:void(0);" class="p-dlb    Btn getVal" onclick="editAddress(this)" data-name="PostCode" data-id="@address.Id">确定</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="f-12 p-colorB clear">
+                                            <div class="skin-minimal f-r mt-20 ">
+                                                <div class="check-box">
+                                                    <input type="checkbox" id="check-@address.Id" name="demo-check1" onclick="setDefaultAddress(this)" data-id="@address.Id" inputid="">
+                                                    <label for="check-1">设为默认地址</label>
+                                                </div>
+                                                <a href="javascript:void(0);" class="Btn p-dlb  Btn" onclick="deleteAddress(this)" data-id="@address.Id">删除地址</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </form>
+                                <script type="text/javascript">$(function () { defaultAddress('@address.Id', '@address.IsDefault'); });</script>
+                            }
+                        }
+
+                        <div class="add_addr text-c">
+                            <a href="javascript:void();" class="Btn addAddrBtn">+增加新地址</a>
+                            <div class="addAddress text-l  mt-30">
+                                <form action="" method="post" class="form form-horizontal ml-30">
+                                    <div class="row cl">
+                                        <label for='username' class="f-14 mb-10 p-dlb">
+                                            收货人
+                                            <span class="p-colorR">*</span>
+                                        </label>
+                                        <div class="formControls p-dlb">
+                                            <input id="username" class="input-text" type="text" name="username" placeholder="请输入用户名">
+                                        </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label for='tel' class="f-14 mb-10 p-dlb">
+                                            收货人电话
+                                            <span class="p-colorR">*</span>
+                                        </label>
+                                        <div class="formControls p-dlb">
+                                            <input id="tel" class="input-text" type="text" name="tel" placeholder="请输入电话号码">
+                                        </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="f-14 mb-10 p-dlb">
+                                            所在地区
+                                            <span class="p-colorR">*</span>
+                                        </label>
+                                        <div class="formControls p-dlb">
+                                            <select name="selectPro2" class="select-box"></select>
+                                            <select name="selectCity2" class="select-box"></select>
+                                            <select name="selectDis2" class="select-box"></select>
+                                        </div>
+                                    </div>
+                                    <div class="row cl">
+                                        <label class="f-14 mb-10 p-dlb" for="address">
+                                            详细地址
+                                            <span class="p-colorR">*</span>
+                                        </label>
+                                        <div class="formControls p-dlb">
+                                            <input id="address" class="input-text" type="text" name="address">
+                                        </div>
+                                    </div>
+                                    <div class="row cl mb-30">
+                                        <label class="f-14 mb-10 p-dlb" for="email">邮编</label>
+                                        <div class="formControls p-dlb">
+                                            <input id="emailCode" class="input-text" type="text" name="email" placeholder="6位邮政编码">
+                                        </div>
+                                    </div>
+                                    <div class="row cl text-c">
+                                        <input type="button" onclick="addAddress()" class="input-submit mr-50" value="保存新地址">
+                                        <input type="button" class="input-submit" value="取消" id="input_clenr">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @RenderPage("~/Areas/Web/Views/Shared/LowHtml.cshtml")
+            <!--退货-->
+            <div class="return return-thing">
+                <form id="return-thing">
+                    <script src="~/Content/js/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+                    <script src="~/Content/js/uploadify/InitUploadify.js" type="text/javascript"></script>
+                    <link href="~/Content/js/uploadify/uploadify.css" rel="stylesheet" />
+                    <h1 id="titleH1">
+                        申请退货<a href="javascript:void(0);" class="f-r ret"></a>
+                    </h1>
+                    <div class="mb-10">
+                        <span class="p-dlb ml-50 f-14" id="Rspan">退货原因</span><span class="p-dlb w-14 dot">*</span>
+                        <span class="select-box p-dlb">
+                            <select class="select" size="1" name="rtSelect" id="rtSelect"></select>
+                        </span>
+                    </div>
+                    <div class="mb-10">
+                        <span class="p-dlb ml-50 f-14">退款金额</span><span class="p-dlb w-14 dot">*</span>
+                        <input type="number" min="0" max="" value="" class="input-text radius size-M p-dlb input" id="rtMoney" name="rtMoney" onkeyup="numberVa()">
+                        <span class="yuan">元</span>
+                        <span>（最多<a class="money">120.00</a> 元，含发货邮费<a class="money">0.00</a> 元）</span>
+                    </div>
+                    <div class="mb-20">
+                        <span class="p-dlb ml-50 f-14" id="Rnote">请填说明</span><span class="p-dlb w-18 dot">*</span>
+                        <textarea placeholder="请填写说明" class="textarea radius p-dlb" id="rtInfo" name="rtInfo"></textarea>
+                        <div class="info">请限制在200字数以内</div>
+                    </div>
+                    <div class="mb-30" style="height:20px;">
+                        <div style="float:left;" class="p-dlb ml-50 f-14">上传凭证</div>
+                        <input data-filetype="multi" data-btntext="选择凭证图片" type="file" class="form-control" style="float:left;" id="uploadify">
+                        <style>
+                            .uploadify {
+                                float: left;
+                                padding-left: 10px;
+                            }
+                        </style>
+                    </div>
+                    <div id="imgArea" class="mb-30" style="padding-left:50px;height:30px;"></div>
+                    <div class="mb-20 text-c">
+                        <input type="button" class="Btn mr-40 ret" value="取消" />
+                        <input type="button" class="Btn" value="确定" data-id="0" data-gid="0" id="rtTrue" onclick="PostReturnThing(this)" />
+                    </div>
+                </form>
+            </div>
+            <!--退款-->
+            <div class="return refund">
+                <form id="refund">
+                    <h1>
+                        申请退款<a href="javascript:void(0);" class="f-r ret"></a>
+                    </h1>
+                    <div class="mb-10">
+                        <span class="p-dlb ml-50 f-14">退款原因</span><span class="p-dlb w-14 dot">*</span>
+                        <span class="select-box p-dlb">
+                            <select class="select" size="1" name="province">
+                                <option value="" selected>重新拍</option>
+                                <option value="1">菜单一</option>
+                                <option value="2">菜单二</option>
+                                <option value="3">菜单三</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="mb-10">
+                        <span class="p-dlb ml-50 f-14">退款金额</span><span class="p-dlb w-14 dot">*</span>
+                        <input type="text" value="120.00" class="input-text size-M p-dlb input">
+                        <span class="yuan">元</span>
+                        <span>（最多<a class="money">120.00</a> 元，含发货邮费<a class="money">0.00</a> 元）</span>
+                    </div>
+                    <div class="mb-20">
+                        <span class="p-dlb ml-50 f-14">退款说明</span><span class="p-dlb w-14"></span>
+                        <textarea placeholder="请填写退款说明" class="textarea p-dlb"></textarea>
+                        <div class="info">请限制在200字数以内</div>
+                    </div>
+                    <div class="mb-30">
+                        <span class="p-dlb ml-50 f-14">上传凭证</span><span class="p-dlb w-14"></span>
+                        <span class="btn-upload">
+                            <a href="javascript:void();" class="btn btn-primary radius f-14">浏览文件</a>
+                            <input type="file" multiple name="file_0" class="input-file">
+                        </span>
+                    </div>
+                    <div class="mb-20 text-c">
+                        <input type="button" class="Btn mr-40 ret" value="取消" />
+                        <input type="submit" class="Btn" value="确定" data-id="1" data-gid="0" />
+                    </div>
+                </form>
+            </div>
+            <!--回寄单-->
+            <div class="return mailList">
+                <form id="mailList">
+                    <h1>
+                        填写回寄单号<a href="javascript:void(0);" class="f-r ret"></a>
+                    </h1>
+                    <div class="mb-30">
+                        <span class="p-dlb ml-50 f-14 mb-10">快递公司</span><span class="p-dlb w-14 dot">*</span>
+                        @*<span class="select-box p-dlb mb-10">
+                            <select class="select" size="1" name="province">
+                            <option value="" selected>百世汇通</option>
+                            <option value="1">菜单一</option>
+                            <option value="2">菜单二</option>
+                            <option value="3">菜单三</option>
+                            </select
+
+                            </span>*@
+                        <input type="text" value="" class="input-text radius size-M p-dlb mail" id="express">
+                        <span class="p-dlb ml-50 f-14 mb-10">快递单号</span><span class="p-dlb w-14 dot">*</span>
+                        <input type="text" value="" class="input-text radius size-M p-dlb mail" id="expressNo">
+                    </div>
+                    <div class="mb-20 text-c">
+                        <input type="button" class="Btn mr-40 ret" value="取消" />
+                        <button class="Btn mailListGet" value="确定" data-id="" data-va="">确定</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <!--背景覆盖-->
+            <div class="return-bg"></div>
+            <!--地址格式-->
+            <form id="cloneAddress" action="" method="post" name="addressVaild" class="hidden">
+                <ul class="address-info">
+                    <li class="f-14 pb-20 mb-20 p-colorB bt">
+                        <div class="viewShow">
+                            <span class="p-dlb w-80">收货人</span><span class="dot">:</span><span class="result"></span>
+                            <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                        </div>
+                        <div class="viewShow hide">
+                            <span class="p-dlb w-80">收货人</span>
+                            <div class="skin-minimal p-dlb">
+                                <input type="text" placeholder="" class="input-text size-M" id="avUsername" name="avUsername" value="">
+                            </div>
+                            <div class="skin-minimal mt-40">
+                                <span class="p-dlb w-80"></span>
+                                <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                <a href="javascript:void(0);" class="p-dlb    Btn getVal">确定</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="f-14 pb-20 mb-20 p-colorB bt">
+                        <div class="viewShow">
+                            <span class="p-dlb w-80">收货人电话</span><span class="dot">:</span><span class="result"></span>
+                            <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                        </div>
+                        <div class="viewShow hide">
+                            <span class="p-dlb w-80">收货人电话</span>
+                            <div class="skin-minimal p-dlb">
+                                <input type="text" placeholder="" class="input-text size-M" id="avTele" name="avTele" value="">
+                            </div>
+                            <div class="skin-minimal mt-40">
+                                <span class="p-dlb w-80"></span>
+                                <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                <a href="javascript:void(0);" class="p-dlb    Btn getVal">确定</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="f-14 pb-20 mb-20 p-colorB bt">
+                        <div class="viewShow">
+                            <span class="p-dlb w-80">所在地区</span><span class="dot">:</span><span class="result">
+                            </span>
+                            <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                        </div>
+                        <div class="viewShow hide">
+                            <span class="p-dlb w-80">所在地区</span>
+                            <select name="selectPro" class="select-box"></select>
+                            <select name="selectCity" class="select-box"></select>
+                            <select name="selectDis" class="select-box"></select>
+                            <div class="skin-minimal mt-40">
+                                <span class="p-dlb w-80"></span>
+                                <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                <a href="javascript:void(0);" class="p-dlb    Btn getSelect">确定</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="f-14 pb-20 mb-20 p-colorB bt">
+                        <div class="viewShow">
+                            <span class="p-dlb w-80">详细地址</span><span class="dot">:</span><span class="result"></span>
+                            <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                        </div>
+                        <div class="viewShow hide">
+                            <span class="p-dlb w-80">详细地址</span>
+                            <div class="skin-minimal p-dlb">
+                                <input type="text" placeholder="" class="input-text size-M" id="avAddress" name="avAddress" value="">
+                            </div>
+                            <div class="skin-minimal mt-40">
+                                <span class="p-dlb w-80"></span>
+                                <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                <a href="javascript:void(0);" class="p-dlb    Btn getVal">确定</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="f-14 pb-20 mb-20 p-colorB bt">
+                        <div class="viewShow">
+                            <span class="p-dlb w-80">邮编</span><span class="dot">:</span><span class="result"></span>
+                            <div class="f-r"><a href="javascript:void(0);" class="p-dlb editor mt-5 mr-10 editN"></a><span>编辑</span></div>
+                        </div>
+                        <div class="viewShow hide">
+                            <span class="p-dlb w-80">邮编</span>
+                            <div class="skin-minimal p-dlb">
+                                <input type="text" placeholder="" class="input-text size-M" id="avPostcode" name="avPostcode" value="">
+                            </div>
+                            <div class="skin-minimal mt-40">
+                                <span class="p-dlb w-80"></span>
+                                <a href="javascript:void(0);" class="p-dlb    Btn mr-35 accNex">取消</a>
+                                <a href="javascript:void(0);" class="p-dlb    Btn getVal">确定</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="f-12 p-colorB clear">
+                        <div class="skin-minimal f-r mt-20 ">
+                            <div class="check-box">
+                                <input type="checkbox" id="check-1" name="demo-check1">
+                                <label for="check-1">设为默认地址</label>
+                            </div>
+                            <a href="javascript:void(0);" class="Btn p-dlb  Btn" onclick="deleteAddress(this)" data-id="">删除地址</a>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <script type="text/javascript">
+                //导航栏active变更
+                $("#topMulu").find('li').find('a').removeClass('active');
+                $("#LoginState").attr('href', "");
+                $(function () {
+                    getOrderData(1);
+                    getAfterData(1);
+                    $("#orderUl li a").on("click", function () {
+                        //$(this).parents(".personalCon-bar").find(".disAll").css({
+                        //    "fontWeight": "500",
+                        //    "color": "#999"
+                        //});;
+                        $("#orderUl").find('.current').removeClass('current');
+                        $(this).parent().addClass('current');
+                        getOrderData(1);
+                    });
+                    $("#shouhouUl li a").on("click", function () {
+                        //$(this).parents(".personalCon-bar").find(".disAll").css({
+                        //    "fontWeight": "500",
+                        //    "color": "#999"
+                        //});;
+                        $("#shouhouUl").find('.current').removeClass('current');
+                        $(this).parent().addClass('current');
+                        getAfterData(1);
+                    });
+
+                });
+
+                function getOrderData(pageIndex) {
+                    var state = $('#orderUl').find('.current').find('a').attr('data-id');
+                    $.post("/Web/Account/GetOrderStateAll", { pageIndex: pageIndex, pageSize: 5, state: state }, function (data) {
+                        if (data === "0") {
+                            window.location.href = "/Web/Home/Login";
+                            return;
+                        }
+                        $("#bar" + state + "").html(data);
+                    });
+                }
+
+                function getAfterData(pageIndex) {
+                    var state = $('#shouhouUl').find('.current').find('a').attr('data-id');
+                    $.post("/Web/Account/GetAfterData", { pageIndex: pageIndex, pageSize: 5, state: state }, function (data) {
+                        if (data === "0") {
+                            window.location.href = "/Web/Home/Login";
+                            return;
+                        }
+                        $("#s_bar" + state + "").html(data);
+                    });
+                }
+            </script>
+
+        </body>
+    </html>

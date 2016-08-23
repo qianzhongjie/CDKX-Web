@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>必买好货</title>
+    <!-- 屏幕适配 -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- webapp -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 启用webkit内核模式浏览器 -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 页面关键字 -->
+    <meta name="keywords" content="" />
+    <!-- 页面描述 -->
+    <meta name="description" content="" />
+
+    <link href="~/Content/css/H-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/public.css" rel="stylesheet" />
+    <link href="~/Content/css/header.css" rel="stylesheet" />
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+    <link href="~/Content/css/online.css" rel="stylesheet" />
+    <link href="~/Content/css/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/css/list_buy.css" rel="stylesheet" />
+    <link href="~/Content/css/sprite.css" rel="stylesheet" />
+    <link href="~/Content/css/list_pay.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../bower/html5.js"></script>
+    <![endif]-->
+    <script src="~/Content/bower/jquery.1.9.1.min.js"></script>
+    <script src="~/Content/bower/H-ui.js"></script>
+
+</head>
+<body>
+    @RenderPage("~/Areas/Web/Views/Shared/TopHtml.cshtml")
+
+    <!------------内容container---------------------------------->
+    <div id="container">
+        <div id="pay">
+            <h1 class="pay_title">支付订单</h1>
+            <div class="pay_box">
+                <div class="pay_style">
+                    <h2 class="title">支付方式</h2>
+                    <div class="pay_bg">
+                        <div class="pay_wrap">
+                            <label class="wx_pay">
+                                <div class="radio-box2">
+                                    <input type="radio" name="pay" />
+                                    <span class="icon icon-radio icon-radio_c">
+                                    </span>
+                                    <img src="~/Content/images/weixin_pay.png" width="144px" height="40px"/>
+                                </div>
+                            </label>
+                            <label class="zfb_pay">
+                                <div class="radio-box2">
+                                    <input type="radio" name="pay" />
+                                    <span class="icon icon-radio icon-radio_c">
+                                    </span>
+                                    <img src="~/Content/images/zhifubao_pay.png" width="118px" height="40px"/>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order_box">
+                    <div class="order">
+                        <h1 class="title">订单编号： 1267958726260946</h1>
+                        <div class="order_list clearFix">
+                            <div class="left">
+                                <div>
+                                    <img src="images/shoes_pic.jpg" />
+                                </div>
+                            </div>
+                            <div class="right">
+                                <h1 class="title">
+                                    Belle/百丽春季新款专柜同款细跟尖头气质
+                                    女单鞋3V3A2AQ5
+                                </h1>
+                                <p class="price">￥320</p>
+                                <div class="color_box clearFix">
+                                    <span class="color">颜色：青色</span><span class="size">尺码37</span>
+                                    <span class="fr">x2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order_total clearFix">
+                    <div class="total">
+                        <p>
+                            <span class="number">10件商品</span>
+                            <span class="all">商品总计：</span>
+                            <span class="price">￥300.00</span>
+                        </p>
+                        <p>
+                            <span class="all">应付总额：</span>
+                            <span class="price">￥168.00</span>
+                        </p>
+                        <p class="pay clearFix"><div class="btn2 fr">支付订单</div></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------优选------------------>
+    @Html.Partial("Optimization")
+
+    @RenderPage("~/Areas/Web/Views/Shared/LowHtml.cshtml")
+
+</body>
+</html>

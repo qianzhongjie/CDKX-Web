@@ -1,0 +1,1478 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ifunction.JPush</name>
+    </assembly>
+    <members>
+        <member name="T:ifunction.Extension">
+            <summary>
+            Class Extension.
+            </summary>
+        </member>
+        <member name="M:ifunction.Extension.ToMD5(System.String,System.Text.Encoding)">
+            <summary>
+            To the md5.
+            </summary>
+            <param name="stringObject">The string object.</param>
+            <param name="encoding">The encoding.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.InvalidOperationException">ToMD5</exception>
+        </member>
+        <member name="M:ifunction.Extension.ToMD5(System.Byte[])">
+            <summary>
+            To the md5.
+            </summary>
+            <param name="bytes">The bytes.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.InvalidOperationException">ToMD5</exception>
+        </member>
+        <member name="M:ifunction.Extension.ToSHA1(System.String,System.Text.Encoding)">
+            <summary>
+            Encrypts to SHA1.
+            </summary>
+            <param name="stringObject">The string object.</param>
+            <param name="encoding">The encoding.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.InvalidOperationException">ToSHA1</exception>
+        </member>
+        <member name="M:ifunction.Extension.ToSHA1(System.Byte[])">
+            <summary>
+            Encrypts to SH a1.
+            </summary>
+            <param name="data">The data.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.InvalidOperationException">ToSHA1</exception>
+        </member>
+        <member name="M:ifunction.Extension.GetStringValue(System.String,System.String)">
+            <summary>
+            Gets the string value.
+            </summary>
+            <param name="anyObject">Any object.</param>
+            <param name="defaultString">The default string.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:ifunction.Extension.GetStringValue(System.Object,System.String)">
+            <summary>
+            Gets the string value.
+            </summary>
+            <param name="anyObject">Any object.</param>
+            <param name="defaultString">The default string.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:ifunction.Extension.CheckNullReference(System.Object,System.String)">
+            <summary>
+            Checks the null reference.
+            </summary>
+            <param name="anyObject">Any object.</param>
+            <param name="objectIdentity">The object identity.</param>
+            <exception cref="T:System.NullReferenceException">Object [ + objectIdentity.GetStringValue() + ] is null.</exception>
+        </member>
+        <member name="M:ifunction.Extension.ToBase64(System.String,System.Text.Encoding)">
+            <summary>
+            To base64. Default encoding is UTF-8.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="encoding">The encoding.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:ifunction.Extension.Merge``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+            <summary>
+            Merges the specified container.
+            </summary>
+            <typeparam name="TKey">The type of the attribute key.</typeparam>
+            <typeparam name="TValue">The type of the attribute value.</typeparam>
+            <param name="container">The container.</param>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:ifunction.Extension.Contains(ifunction.JPush.PushPlatform,ifunction.JPush.PushPlatform)">
+            <summary>
+            Determines whether [contains] [the specified platform value].
+            </summary>
+            <param name="platformValue">The platform value.</param>
+            <param name="value">The value.</param>
+            <returns><c>true</c> if [contains] [the specified platform value]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:ifunction.Extension.ToPushMessageRequestV3(ifunction.JPush.PushMessageRequest)">
+            <summary>
+            To the push message request v3.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>ifunction.JPush.V3.PushMessageRequestV3.</returns>
+        </member>
+        <member name="M:ifunction.Extension.ToPushTypeV3(ifunction.JPush.PushType)">
+            <summary>
+            To the push type v3.
+            </summary>
+            <param name="pushType">Type of the push.</param>
+            <returns>ifunction.JPush.V3.PushTypeV3.</returns>
+        </member>
+        <member name="M:ifunction.Extension.ToJson(ifunction.JPush.PushPlatform)">
+            <summary>
+            Platforms to json.
+            </summary>
+            <param name="platform">The platform.</param>
+            <returns>JProperty.</returns>
+        </member>
+        <member name="M:ifunction.Extension.ToJson(ifunction.JPush.V3.Audience)">
+            <summary>
+            Pushes the type to json.
+            </summary>
+            <param name="audience">The audience.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="T:ifunction.HttpExtensions">
+            <summary>
+            Class HttpExtensions.
+            </summary>
+        </member>
+        <member name="M:ifunction.HttpExtensions.ReadResponseAsText(System.Net.HttpWebRequest,System.Text.Encoding)">
+            <summary>
+            Reads the response as text.
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="encoding">The encoding.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:ifunction.HttpExtensions.ReadResponseAsText(System.Net.HttpWebRequest,System.Text.Encoding,System.Net.HttpStatusCode@)">
+            <summary>
+            Reads the response as text.
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="encoding">The encoding.</param>
+            <param name="statusCode">The status code.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:ifunction.HttpExtensions.ReadResponseAsText(System.Net.HttpWebRequest,System.Text.Encoding,System.Net.HttpStatusCode@,System.Net.WebHeaderCollection@)">
+            <summary>
+            Reads the response as text.
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="encoding">The encoding.</param>
+            <param name="statusCode">The status code.</param>
+            <param name="headers">The headers.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.InvalidOperationException">ReadResponseAsText</exception>
+        </member>
+        <member name="M:ifunction.HttpExtensions.ReadAsText(System.Net.WebResponse,System.Text.Encoding)">
+            <summary>
+            Gets text content from WebResponse by specified encoding.
+            </summary>
+            <param name="webResponse">The WebResponse instance.</param>
+            <param name="encoding">The encoding.</param>
+            <returns>The content string.</returns>
+            <exception cref="T:System.InvalidOperationException">ReadAsText</exception>
+        </member>
+        <member name="M:ifunction.HttpExtensions.ReadAsText(System.Net.WebResponse,System.Text.Encoding,System.Boolean)">
+            <summary>
+            Reads as text.
+            </summary>
+            <param name="webResponse">The web response.</param>
+            <param name="encoding">The encoding.</param>
+            <param name="closeResponse">if set to <c>true</c> [close response].</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.InvalidOperationException">ReadAsText</exception>
+        </member>
+        <member name="M:ifunction.HttpExtensions.FillFileData(System.Net.HttpWebRequest,System.Collections.Specialized.NameValueCollection,System.Collections.Generic.Dictionary{System.String,System.Byte[]},System.String)">
+            <summary>
+            Fills the file data.
+            Reference: http://stackoverflow.com/questions/566462/upload-files-with-httpwebrequest-multipart-form-data
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="postData">The post data.</param>
+            <param name="fileCollection">The file collection.
+            Key: file name. e.g.: sample.txt
+            Value: file data in byte array.</param>
+            <param name="paramName">Name of the parameter.</param>
+        </member>
+        <member name="M:ifunction.HttpExtensions.FillFileData(System.Net.HttpWebRequest,System.Collections.Specialized.NameValueCollection,System.String,System.String)">
+            <summary>
+            Fills the file data on HTTP web request.
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="postData">The post data.</param>
+            <param name="fileFullName">Full name of the file.</param>
+            <param name="paramName">Name of the param.</param>
+            <exception cref="T:System.InvalidOperationException">FillFileData</exception>
+        </member>
+        <member name="M:ifunction.HttpExtensions.FillData(System.Net.HttpWebRequest,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Text.Encoding)">
+            <summary>
+            Fills post data on HttpWebRequest.
+            </summary>
+            <param name="httpWebRequest">The HttpWebRequest instance.</param>
+            <param name="method">The method.</param>
+            <param name="dataMappings">The data mappings.</param>
+            <param name="encoding">The encoding.</param>
+        </member>
+        <member name="M:ifunction.HttpExtensions.FillData(System.Net.HttpWebRequest,System.String,System.Byte[])">
+            <summary>
+            Fills the data on HTTP web request.
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="method">The method.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:ifunction.HttpExtensions.FillData(System.Net.HttpWebRequest,System.String,System.String)">
+            <summary>
+            Fills the data on HTTP web request.
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="method">The method.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:ifunction.HttpExtensions.FillData(System.Net.HttpWebRequest,System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Fills the data on HTTP web request.
+            </summary>
+            <param name="httpWebRequest">The HTTP web request.</param>
+            <param name="method">The method.</param>
+            <param name="data">The data.</param>
+            <param name="encodingToByte">The encoding to byte.</param>
+        </member>
+        <member name="M:ifunction.HttpExtensions.GetPostData(System.Web.HttpRequest)">
+            <summary>
+            Gets the post data from HTTP web request.
+            </summary>
+            <param name="httpRequest">The HTTP request.</param>
+            <returns>System.Byte[].</returns>
+        </member>
+        <member name="M:ifunction.HttpExtensions.ToUrlEncodedText(System.String)">
+            <summary>
+            To the URL encoded text.
+            </summary>
+            <param name="originalText">The original text.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="T:ifunction.JPush.V3.Audience">
+            <summary>
+            Class PushMessage
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.V3.Audience.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.V3.Audience"/> class.
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.V3.Audience.#ctor(System.Collections.Generic.Dictionary{ifunction.JPush.V3.PushTypeV3,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.V3.Audience"/> class.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+        </member>
+        <member name="M:ifunction.JPush.V3.Audience.AddItem(ifunction.JPush.V3.PushTypeV3,System.String)">
+            <summary>
+            Adds the item.
+            </summary>
+            <param name="pushType">Type of the push.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="T:ifunction.JPush.V3.AppMessage">
+            <summary>
+            Class AppMessage.
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.V3.AppMessage.Content">
+            <summary>
+            Gets or sets the content.
+            </summary>
+            <value>The content.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.AppMessage.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.AppMessage.ContentType">
+            <summary>
+            Gets or sets the type of the content.
+            </summary>
+            <value>The type of the content.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.AppMessage.CustomizedValue">
+            <summary>
+            Gets or sets the customized value.
+            </summary>
+            <value>The customized value.</value>
+        </member>
+        <member name="T:ifunction.JPush.V3.Notification">
+            <summary>
+            Enum PushType
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.V3.Notification.AndroidNotification">
+            <summary>
+            Gets or sets the android notification.
+            </summary>
+            <value>The android notification.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.Notification.iOSNotification">
+            <summary>
+            Gets or sets the i os notification.
+            </summary>
+            <value>The i os notification.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.Notification.WindowsPhoneNotification">
+            <summary>
+            Gets or sets the windows phone notification.
+            </summary>
+            <value>The windows phone notification.</value>
+        </member>
+        <member name="T:ifunction.JPush.V3.WindowsPhoneNotificationParameters">
+            <summary>
+            Enum PushType
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.V3.WindowsPhoneNotificationParameters.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.V3.WindowsPhoneNotificationParameters"/> class.
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.V3.WindowsPhoneNotificationParameters.Alert">
+            <summary>
+            Gets or sets the alert.
+            </summary>
+            <value>The alert.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.WindowsPhoneNotificationParameters.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.WindowsPhoneNotificationParameters.OpenPage">
+            <summary>
+            Gets or sets the open page.
+            </summary>
+            <value>The open page.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.WindowsPhoneNotificationParameters.CustomizedValues">
+            <summary>
+            Gets or sets the customized values.
+            </summary>
+            <value>The customized values.</value>
+        </member>
+        <member name="T:ifunction.JPush.V3.iOSNotificationParameters">
+            <summary>
+            Enum PushType
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.V3.iOSNotificationParameters.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.V3.iOSNotificationParameters"/> class.
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.V3.iOSNotificationParameters.Alert">
+            <summary>
+            Gets or sets the alert.
+            </summary>
+            <value>The alert.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.iOSNotificationParameters.Sound">
+            <summary>
+            Gets or sets the sound.
+            </summary>
+            <value>The sound.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.iOSNotificationParameters.Badge">
+            <summary>
+            Gets or sets the badge.
+            <remarks>
+            Can be absolute number or offset number. 
+            <example>
+            1, 2, 3 or +1, +2, +3
+            </example>
+            </remarks>
+            </summary>
+            <value>The badge.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.iOSNotificationParameters.SilenceMode">
+            <summary>
+            Gets or sets a value indicating whether [silence mode].
+            </summary>
+            <value><c>null</c> if [silence mode] contains no value, <c>true</c> if [silence mode]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.iOSNotificationParameters.CustomizedValues">
+            <summary>
+            Gets or sets the customized values.
+            </summary>
+            <value>The customized values.</value>
+        </member>
+        <member name="T:ifunction.JPush.V3.JPushClientV3">
+             <summary>
+             Class JPushClient.
+             <example>
+             Here is a sample based on .NET console application.
+             <code>
+             <![CDATA[
+             using System;
+             using System.Collections.Generic;
+             using System.IO;
+             using System.Net;
+             using System.Text;
+             using System.Threading;
+             using ifunction.JPush.V3;
+             using Newtonsoft.Json;
+            
+             namespace ifunction.JPush.Test
+             {
+                 class Program
+                 {
+                     static void Main(string[] args)
+                     {
+                         var appKey = "1234567890abcdef"; // Your App Key from JPush
+                         var masterSecret = "1234567890abcdef"; // Your Master Secret from JPush
+            
+                         Dictionary<string, string> customizedValues = new Dictionary<string, string>();
+                         customizedValues.Add("CK1", "CV1");
+                         customizedValues.Add("CK2", "CV2");
+            
+                         JPushClientV3 client = new JPushClientV3(appKey, masterSecret);
+            
+                         Audience audience = new Audience();
+                         // In JPush V3, tag can be multiple added with different values.
+                         // In following code, it is to send push to those who are in ((Tag1 AND Tag2) AND (Tag3 OR Tag4))
+                         // If you want to send to all, please use: audience.Add(PushTypeV3.Broadcast, null);
+                         audience.Add(PushTypeV3.ByTagWithinAnd, new List<string>(new string[] { "Tag1", "Tag2" }));
+                         audience.Add(PushTypeV3.ByTagWithinOr, new List<string>(new string[] { "Tag3", "Tag4" }));
+            
+                         // In JPush V3, Notification would not be display on screen, it would be transferred to app instead.
+                         // And different platform can provide different notification data.
+                         Notification notification = new Notification
+                         {
+                             AndroidNotification = new AndroidNotificationParameters
+                             {
+                                 Title = "JPush provides V3.",
+                                 Alert = "JPush V2 would be retired soon.",
+                                 CustomizedValues = customizedValues
+                             },
+                             iOSNotification = new iOSNotificationParameters
+                             {
+                                 Badge = 1,
+                                 Alert = "JPush V2 would be retired soon.",
+                                 Sound = "YourSound",
+                                 CustomizedValues = customizedValues
+                             }
+                         };
+            
+                         var response = client.SendPushMessage(new PushMessageRequestV3
+                         {
+                             Audience = audience,
+                             Platform = PushPlatform.AndroidAndiOS,
+                             IsTestEnvironment = true,
+                             AppMessage = new AppMessage
+                             {
+                                 Content = "Hello, this is a test push of V3 from .NET. Have a nice day!",
+                                 CustomizedValue = customizedValues
+                             },
+                             Notification = notification
+                         });
+            
+                         Console.WriteLine(response.ResponseCode.ToString() + ":" + response.ResponseMessage);
+                         Console.WriteLine("Push sent.");
+                         Console.WriteLine(response.ResponseCode.ToString() + ":" + response.ResponseMessage);
+            
+                         List<string> idToCheck = new List<string>();
+                         idToCheck.Add(response.MessageId);
+            
+                         var statusList = client.QueryPushMessageStatus(idToCheck);
+            
+                         Console.WriteLine("Status track is completed.");
+            
+                         if (statusList != null)
+                         {
+                             foreach (var one in statusList)
+                             {
+                                 Console.WriteLine(string.Format("Id: {0}, Android: {1}, iOS: {2}", one.MessageId, one.AndroidDeliveredCount, one.ApplePushNotificationDeliveredCount));
+                             }
+                         }
+            
+                         Console.WriteLine("Press any key to exit.");
+                         Console.Read();
+                     }
+                 }
+             }
+                ]]>
+                </code>
+             </example>
+             If you already use JPushClient V2 (Class: <see cref="T:ifunction.JPush.JPushClient"/>), you can continue to use that. Library would convert the old <see cref="T:ifunction.JPush.PushMessageRequest"/> to <see cref="T:ifunction.JPush.V3.PushMessageRequestV3"/>.
+             NOTE: the parameter in constructor of <see cref="T:ifunction.JPush.JPushClient"/> has lost effect. Whatever you set as true or false, SSL would be used according to JPush's new rule.
+             RESTful API reference: http://docs.jpush.cn/display/dev/Push-API-v3   
+             </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.JPushClientV3.apiBaseUrl">
+            <summary>
+            The remote base URL
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.JPushClientV3.reportBaseUrlFormat">
+            <summary>
+            The report base URL format
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.JPushClient"/> class.
+            </summary>
+            <param name="appKey">The application key.</param>
+            <param name="masterSecret">The master secret.</param>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.SendPushMessage(ifunction.JPush.V3.PushMessageRequestV3)">
+            <summary>
+            Sends the push message.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>PushResponseCode.</returns>
+            <exception cref="T:System.InvalidOperationException">Failed to send push message.</exception>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.QueryPushMessageStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            Queries the push message status.
+            JPush has official limitation. One query support no more than 100 IDs. So if the input has more than 100 IDs, only the first 100 IDs would be queried.
+            </summary>
+            <param name="messageIdCollection">The message unique identifier collection.</param>
+            <returns>List{PushMessageStatus}.</returns>
+            <exception cref="T:System.InvalidOperationException">Failed to QueryPushMessageStatus.</exception>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.CreatePushRequest(ifunction.JPush.V3.PushMessageRequestV3)">
+            <summary>
+            Creates the push request.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>HttpWebRequest.</returns>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.CreatePushQueryRequest(System.String)">
+            <summary>
+            Creates the push query request.
+            </summary>
+            <param name="idCollectionString">The unique identifier collection string.</param>
+            <returns>HttpWebRequest.</returns>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.FillAuthentication(System.Net.HttpWebRequest)">
+            <summary>
+            Fills the authentication.
+            </summary>
+            <param name="httpRequest">The HTTP request.</param>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.FillAuthenticationV3(System.Net.HttpWebRequest)">
+            <summary>
+            Fills the authentication v3.
+            </summary>
+            <param name="httpRequest">The HTTP request.</param>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.CreateRequestOptions(ifunction.JPush.V3.PushMessageRequestV3)">
+            <summary>
+            Creates the request option.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>Dictionary&lt;System.String, System.Object&gt;.</returns>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.FillNetworkCredential(System.Net.HttpWebRequest)">
+            <summary>
+            Fills the network credential.
+            </summary>
+            <param name="httpRequest">The HTTP request.</param>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.GenerateQueryToken(System.String,System.String)">
+            <summary>
+            Generates the query token.
+            </summary>
+            <param name="appKey">The application key.</param>
+            <param name="masterSecret">The master secret.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:ifunction.JPush.V3.JPushClientV3.GenerateSendIdentity">
+            <summary>
+            Generates the send identity.
+            The total milliseconds value of offset from UTC now to UTC 2014 Jan 1st.
+            </summary>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="P:ifunction.JPush.V3.JPushClientV3.AppKey">
+            <summary>
+            Gets or sets the application key.
+            </summary>
+            <value>The application key.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.JPushClientV3.MasterSecret">
+            <summary>
+            Gets or sets the master secret.
+            </summary>
+            <value>The master secret.</value>
+        </member>
+        <member name="T:ifunction.JPush.JPushHandler">
+             <summary>
+             Class <c>JPushHandler</c>. Class <c>JPushHandler</c> is inherited from class <c>JPushClient</c>. The difference is, class <c>JPushHandler</c> has already involve the maintenance logic to automatically track JPush Message status. You only need to assign appropriate delegate to update status result to your storage. Since a background monitor thread would be initialized in each instance of class <c>JPushHandler</c>, it is strongly recommended to use JPushHandler as singleton. Another minor difference is, class <c>JPushClient</c> uses SSL always, which can be noticed by its constructor.
+             <example>
+             Here is a sample based on .NET console application.
+             <code>
+             <![CDATA[
+            namespace ifunction.JPush.Test
+            {
+                static class Program
+                {
+                    static void Main(string[] args)
+                    {
+                        var appKey = "1234567890abcdef"; // Your App Key from JPush
+                        var masterSecret = "1234567890abcdef"; // Your Master Secret from JPush
+            
+                        Dictionary<string, string> customizedValues = new Dictionary<string, string>();
+                        customizedValues.Add("CK1", "CV1");
+                        customizedValues.Add("CK2", "CV2");
+            
+                        JPushHandler handler = new JPushHandler(
+                            appKey,                              // Your app key
+                            masterSecret,                        // Your master secret
+                            CreatePushMessageLogDelegate,        // Delegate for creating push message log. Generally, it is to save log in database or any other media for later tracking in UI, but to make it simple here, just console write lines of information in JSON format.
+                            UpdatePushMessageStatus,             // Delegate for updating push message status. Generally, it is to update status in database, but to make it simple here, just console write lines of information.
+                            null,                                // Delegate for initializing message tracking information. Generally, it is to read message id collection which need to be tracked from database, especially it occurs when machine is rebooted. To make it simple here, leave null for doing nothing.                
+                            null,                                // Delegate for reporting exception. Generally, it is to write log in file, event log or database. To make it simple here, leave null for doing nothing.
+                            2                                    // Interval value for monitoring thread for get update for message status. By default, it is 60 in seconds. It is set 2 seconds here for sample.
+                            );
+            
+                        handler.SendPushMessage(new PushMessageRequest
+                                         {
+                                             MessageType = MessageType.Notification,
+                                             Platform = PushPlatform.Android,
+                                             Description = "DotNET",
+                                             PushType = PushType.Broadcast,
+                                             IsTestEnvironment = true,
+                                             Message = new PushMessage
+                                             {
+                                                 Content = "Hello, this is a test push from .NET. Have a nice day!",
+                                                 PushTitle = "A title.",
+                                                 Sound = "YourSound",
+                                                 CustomizedValue = customizedValues
+                                             }
+                                         });
+            
+                        Console.WriteLine("Tracking IDs in list:");
+                        foreach (var one in handler.MessageTrackingId)
+                        {
+                            Console.WriteLine(one);
+                        }
+                        Console.WriteLine("---------- END ----------");
+            
+                        Thread.Sleep(10 * 1000); // To sleep 10 seconds here to make sure the monitoring thread in hander has been invoked.
+            
+                        Console.WriteLine("Press any key to exit.");
+                        Console.Read();
+                    }
+            
+                    public static void CreatePushMessageLogDelegate(PushMessageRequest messageRequest, PushResponse response)
+                    {
+                        Console.WriteLine(string.Format(@"Push Log {0}
+            Request:
+            {1}
+            
+            Response:
+            {2}", JsonConvert.SerializeObject(messageRequest), JsonConvert.SerializeObject(response)));
+                    }
+            
+                    public static void CreatePushMessageLog(PushMessageRequest messageRequest, PushResponse response)
+                    {
+                        Console.WriteLine(string.Format(@"Push Log {0}
+            Request:
+            {1}
+            Response:
+            {2}", JsonConvert.SerializeObject(messageRequest), JsonConvert.SerializeObject(response)));
+                    }
+            
+                    public static void UpdatePushMessageStatus(List<PushMessageStatus> pushMessageStatus)
+                    {
+                        if (pushMessageStatus != null)
+                        {
+                            foreach (var one in pushMessageStatus)
+                            {
+                                Console.WriteLine(string.Format(@"Push Message Status Update: {0}
+            Android: {1}
+            iOS: {2}", one.MessageId, one.AndroidDeliveredCount, one.ApplePushNotificationDeliveredCount));
+                            }
+                        }
+                    }
+                }
+            }
+             ]]>
+             </code>
+             </example>
+             RESTful API reference: http://docs.jpush.cn/display/dev/Index
+             </summary>
+        </member>
+        <member name="F:ifunction.JPush.JPushHandler.pushMessageStatusTrackingLifeCycle">
+            <summary>
+            The push message status tracking life cycle
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.JPushHandler.client">
+            <summary>
+            The client
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.JPushHandler.pushMessageTrackingList">
+            <summary>
+            The push message tracking list
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.JPushHandler.dataLocker">
+            <summary>
+            The data locker
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.JPushHandler.monitorThread">
+            <summary>
+            The monitor thread
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.MonitorThreadDelegate">
+            <summary>
+            Monitors the thread delegate.
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.InitializeBackgroundThread">
+            <summary>
+            Initializes the background thread.
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.#ctor(System.String,System.String,ifunction.JPush.JPushHandler.CreatePushMessageLogDelegate,ifunction.JPush.JPushHandler.UpdatePushMessageStatusDelegate,ifunction.JPush.JPushHandler.InitializeMessageTrackingIdDelegate,ifunction.JPush.JPushHandler.ReportExceptionDelegate,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.JPushClient"/> class.
+            </summary>
+            <param name="appKey">The application key.</param>
+            <param name="masterSecret">The master secret.</param>
+            <param name="createPushMessageLogDelegate">The create push message log delegate.</param>
+            <param name="updatePushMessageStatusDelegate">The update push message status delegate.</param>
+            <param name="initializeDelegate">The initialize delegate.</param>
+            <param name="exceptionDelegate">The exception delegate.</param>
+            <param name="intervalInSecond">The interval in second.</param>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.SendPushMessage(ifunction.JPush.PushMessageRequest)">
+            <summary>
+            Sends the push message.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>PushResponseCode.</returns>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.SendPushMessage(ifunction.JPush.V3.PushMessageRequestV3)">
+            <summary>
+            Sends the push message.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>PushResponse.</returns>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.AddMessageTrackingId(ifunction.JPush.PushMessageTracking)">
+            <summary>
+            Adds the message tracking identifier.
+            </summary>
+            <param name="messageTracking">The message tracking.</param>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.RemoveMessageTracking(System.String)">
+            <summary>
+            Removes the message tracking.
+            </summary>
+            <param name="messageId">The message identifier.</param>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.HandleException(System.Exception)">
+            <summary>
+            Handles the exception.
+            </summary>
+            <param name="exception">The exception.</param>
+            <exception cref="T:System.InvalidOperationException">Failed to handle exception with specific delegate.</exception>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.FindMessageTrackingByIdWithoutLocker(System.String,System.Int32@)">
+            <summary>
+            Finds the message tracking by identifier.
+            </summary>
+            <param name="messageId">The message identifier.</param>
+            <param name="index">The index.</param>
+            <returns>PushMessageTracking.</returns>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.AddMessageTrackingIdWithoutLocker(ifunction.JPush.PushMessageTracking)">
+            <summary>
+            Adds the message tracking identifier without locker.
+            </summary>
+            <param name="messageTracking">The message tracking.</param>
+        </member>
+        <member name="M:ifunction.JPush.JPushHandler.RemoveMessageTrackingWithoutLocker(System.String)">
+            <summary>
+            Removes the message tracking without locker.
+            </summary>
+            <param name="messageId">The message identifier.</param>
+        </member>
+        <member name="P:ifunction.JPush.JPushHandler.IntervalInSecond">
+            <summary>
+            Gets or sets the interval in second.
+            </summary>
+            <value>The interval in second.</value>
+        </member>
+        <member name="P:ifunction.JPush.JPushHandler.CreateDelegate">
+            <summary>
+            Gets or sets the create delegate.
+            </summary>
+            <value>The create delegate.</value>
+        </member>
+        <member name="P:ifunction.JPush.JPushHandler.UpdateDelegate">
+            <summary>
+            Gets or sets the update delegate.
+            </summary>
+            <value>The update delegate.</value>
+        </member>
+        <member name="P:ifunction.JPush.JPushHandler.InitializeDelegate">
+            <summary>
+            Gets or sets the initialize delegate.
+            </summary>
+            <value>The initialize delegate.</value>
+        </member>
+        <member name="P:ifunction.JPush.JPushHandler.ExceptionDelegate">
+            <summary>
+            Gets or sets the exception delegate.
+            </summary>
+            <value>The exception delegate.</value>
+        </member>
+        <member name="P:ifunction.JPush.JPushHandler.MessageTrackingId">
+            <summary>
+            Gets the message tracking identifier.
+            </summary>
+            <value>The message tracking identifier.</value>
+        </member>
+        <member name="T:ifunction.JPush.JPushHandler.InitializeMessageTrackingIdDelegate">
+            <summary>
+            Delegate InitializeMessageTrackingId
+            </summary>
+            <returns>IEnumerable{System.String}.</returns>
+        </member>
+        <member name="T:ifunction.JPush.JPushHandler.CreatePushMessageLogDelegate">
+            <summary>
+            Delegate CreatePushMessageLog
+            </summary>
+            <param name="messageRequest">The message request.</param>
+            <param name="response">The response.</param>
+        </member>
+        <member name="T:ifunction.JPush.JPushHandler.UpdatePushMessageStatusDelegate">
+            <summary>
+            Delegate UpdatePushMessageStatusDelegate
+            </summary>
+            <param name="pushMessageStatus">The push message status.</param>
+        </member>
+        <member name="T:ifunction.JPush.JPushHandler.ReportExceptionDelegate">
+            <summary>
+            Delegate ReportExceptionDelegate
+            </summary>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="T:ifunction.JPush.JPushClient">
+             <summary>
+             Class JPushClient.
+             <example>
+             Here is a sample based on .NET console application.
+             <code>
+             <![CDATA[
+              class Program
+               {
+                    static void Main(string[] args)
+                    {
+                        var appKey = "1234567890abcdef"; // Your App Key from JPush
+                        var masterSecret = "1234567890abcdef"; // Your Master Secret from JPush
+            
+                        Dictionary<string, string> customizedValues = new Dictionary<string, string>();
+                        customizedValues.Add("CK1", "CV1");
+                        customizedValues.Add("CK2", "CV2");
+            
+                        JPushClient client = new JPushClient(appKey, masterSecret, false);
+                        var response = client.SendPushMessage(new PushMessageRequest
+                                   {
+                                       MessageType = MessageType.Notification,
+                                       Platform = PushPlatform.Android,
+                                       Description = "DotNET",
+                                       PushType = PushType.Broadcast,
+                                       IsTestEnvironment = true,
+                                       Message = new PushMessage
+                                       {
+                                           Content = "Hello, this is a test push from .NET. Have a nice day!",
+                                           PushTitle = "A title.",
+                                           Sound = "YourSound",
+                                           CustomizedValue = customizedValues
+                                       }
+                                   });
+            
+                        Console.WriteLine(response.ResponseCode.ToString() + ":" + response.ResponseMessage);
+                        Console.WriteLine("Push sent.");
+                        Console.WriteLine(response.ResponseCode.ToString() + ":" + response.ResponseMessage);
+            
+            
+                        List<string> idToCheck = new List<string>();
+                        idToCheck.Add(response.MessageId);
+                        var statusList = client.QueryPushMessageStatus(idToCheck);
+            
+                        Console.WriteLine("Status track is completed.");
+            
+                        if (statusList != null)
+                        {
+                            foreach (var one in statusList)
+                            {
+                                Console.WriteLine(string.Format("Id: {0}, Android: {1}, iOS: {2}", one.MessageId, one.AndroidDeliveredCount, one.ApplePushNotificationDeliveredCount));
+                            }
+                        }
+            
+                        Console.WriteLine("Press any key to exit.");
+                        Console.Read();
+                    }
+                }
+                ]]>
+                </code>
+             </example>
+             RESTful API reference: http://docs.jpush.cn/display/dev/Index
+             </summary>
+        </member>
+        <member name="M:ifunction.JPush.JPushClient.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.JPushClient"/> class.
+            </summary>
+            <param name="appKey">The application key.</param>
+            <param name="masterSecret">The master secret.</param>
+            <param name="useSSL">if set to <c>true</c> [use SSL].</param>
+        </member>
+        <member name="M:ifunction.JPush.JPushClient.SendPushMessage(ifunction.JPush.PushMessageRequest)">
+            <summary>
+            Sends the push message.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>PushResponseCode.</returns>
+            <exception cref="T:System.InvalidOperationException">Failed to send push message.</exception>
+        </member>
+        <member name="M:ifunction.JPush.JPushClient.QueryPushMessageStatus(System.Collections.Generic.List{System.String})">
+            <summary>
+            Queries the push message status.
+            JPush has official limitation. One query support no more than 100 IDs. So if the input has more than 100 IDs, only the first 100 IDs would be queried.
+            </summary>
+            <param name="messageIdCollection">The message unique identifier collection.</param>
+            <returns>List{PushMessageStatus}.</returns>
+            <exception cref="T:System.InvalidOperationException">Failed to QueryPushMessageStatus.</exception>
+        </member>
+        <member name="T:ifunction.JPush.MessageType">
+            <summary>
+            Enum MessageType
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.MessageType.None">
+            <summary>
+            The none
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.MessageType.Notification">
+            <summary>
+            The notification
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.MessageType.CustomizedMessage">
+            <summary>
+            The customized message.
+            For Android only.
+            </summary>
+        </member>
+        <member name="T:ifunction.JPush.PushMessageTracking">
+            <summary>
+            Class PushMessageTracking.
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.PushMessageTracking.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents this instance.</returns>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageTracking.MessageId">
+            <summary>
+            Gets or sets the message identifier.
+            </summary>
+            <value>The message identifier.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageTracking.CreatedUtcStamp">
+            <summary>
+            Gets or sets the created UTC stamp.
+            </summary>
+            <value>The created UTC stamp.</value>
+        </member>
+        <member name="T:ifunction.JPush.PushMessage">
+            <summary>
+            Class PushMessage.
+            <see cref="T:ifunction.JPush.PushMessageRequest"/> and <see cref="T:ifunction.JPush.PushMessage"/> work together to send out push request.
+            See official RESTful API: http://docs.jpush.cn/display/dev/Push+API+v2
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.PushMessage.ToJson(ifunction.JPush.PushPlatform)">
+            <summary>
+            To json.
+            iOS Push Message example:
+            <example>
+            {"n_content":"通知内容", "n_extras":{"ios":{"badge":88, "sound":"happy"}, "user_param_1":"value1", "user_param_2":"value2"}}
+            </example>
+            </summary>
+            <param name="platform">The platform.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:ifunction.JPush.PushMessage.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents this instance.</returns>
+        </member>
+        <member name="P:ifunction.JPush.PushMessage.Content">
+            <summary>
+            Gets or sets the content.
+            </summary>
+            <value>The content.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessage.CustomizedValue">
+            <summary>
+            Gets or sets the customized value.
+            </summary>
+            <value>The customized value.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessage.BadgeValue">
+            <summary>
+            Gets or sets the badge value.
+            </summary>
+            <value>The badge value.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessage.Sound">
+            <summary>
+            Gets or sets the sound.
+            For iOS only.
+            </summary>
+            <value>The sound.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessage.PushTitle">
+            <summary>
+            Gets or sets the push title.
+            For Android Only.
+            </summary>
+            <value>The push title.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessage.BuilderId">
+            <summary>
+            Gets or sets the builder unique identifier.
+            For Android Only.
+            Default is 0. Valid value is 1-1000
+            </summary>
+            <value>The builder unique identifier.</value>
+        </member>
+        <member name="T:ifunction.JPush.PushMessageRequest">
+            <summary>
+            Class PushMessageRequest.
+            <see cref="T:ifunction.JPush.PushMessageRequest"/> and <see cref="T:ifunction.JPush.PushMessage"/> work together to send out push request.
+            See official RESTful API: http://docs.jpush.cn/display/dev/Push+API+v2
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.PushType">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.MessageType">
+            <summary>
+            Gets or sets the type of the message.
+            </summary>
+            <value>The type of the message.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.Platform">
+            <summary>
+            Gets or sets the platform.
+            </summary>
+            <value>The platform.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.ReceiverValue">
+            <summary>
+            Gets or sets the receiver value.
+            </summary>
+            <value>The receiver value.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.LifeTime">
+            <summary>
+            Gets or sets the life time.
+            Unit: second.
+            Max: 864000 Seconds (10 days).
+            Default: 86400 Seconds (1 days).      
+            </summary>
+            <value>The life time.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.OverrideMessageId">
+            <summary>
+            Gets or sets the override message unique identifier.
+            </summary>
+            <value>The override message unique identifier.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageRequest.IsTestEnvironment">
+            <summary>
+            Gets or sets a value indicating whether this instance is test.
+            For iOS only.
+            Default: false.
+            </summary>
+            <value><c>true</c> if this instance is test; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:ifunction.JPush.PushMessageStatus">
+            <summary>
+            Class PushMessageStatus.
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageStatus.MessageId">
+            <summary>
+            Gets or sets the message unique identifier.
+            This value is decided by JPush Service.
+            </summary>
+            <value>The message unique identifier.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageStatus.AndroidDeliveredCount">
+            <summary>
+            Gets or sets the android delivered count.
+            </summary>
+            <value>The android delivered count.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushMessageStatus.ApplePushNotificationDeliveredCount">
+            <summary>
+            Gets or sets the apple push notification delivered count.
+            </summary>
+            <value>The apple push notification delivered count.</value>
+        </member>
+        <member name="T:ifunction.JPush.PushPlatform">
+            <summary>
+            Enum PushPlatform
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.None">
+            <summary>
+            The none
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.Android">
+            <summary>
+            The android
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.iOS">
+            <summary>
+            The i os
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.WindowsPhone">
+            <summary>
+            The windows phone
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.AndroidAndiOS">
+            <summary>
+            The android + ios
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.AndroidAndWindowsPhone">
+            <summary>
+            The android + windows phone
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.iOSAndWindowsPhone">
+            <summary>
+            The ios + windows phone
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushPlatform.All">
+            <summary>
+            The android + ios + windows phone
+            </summary>
+        </member>
+        <member name="T:ifunction.JPush.PushResponse">
+            <summary>
+            Class PushResponse.
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.PushResponse.SendIdentity">
+            <summary>
+            Gets or sets the send identity.
+            </summary>
+            <value>The send identity.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushResponse.MessageId">
+            <summary>
+            Gets or sets the message unique identifier.
+            </summary>
+            <value>The message unique identifier.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushResponse.ResponseCode">
+            <summary>
+            Gets or sets the response code.
+            </summary>
+            <value>The response code.</value>
+        </member>
+        <member name="P:ifunction.JPush.PushResponse.ResponseMessage">
+            <summary>
+            Gets or sets the response message.
+            </summary>
+            <value>The response message.</value>
+        </member>
+        <member name="T:ifunction.JPush.PushResponseCode">
+            <summary>
+            Enum PushResponseCode
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.Succeed">
+            <summary>
+            Value indicating succeed
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.ServiceError">
+            <summary>
+            Value indicating service error
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.PostOnly">
+            <summary>
+            Value indicating post only
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.MissingRequiredParameter">
+            <summary>
+            Value indicating missing required parameter
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.InvalidParameter">
+            <summary>
+            Value indicating invalid parameter
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.FailedVerificationCode">
+            <summary>
+            Value indicating failed verification code
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.BodyTooLarge">
+            <summary>
+            Value indicating body too large
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.InvalidUserOrPassword">
+            <summary>
+            Value indicating invalid user or password
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.InvalidReceiverValue">
+            <summary>
+            Value indicating invalid receiver value
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.InvalidAppKey">
+            <summary>
+            Value indicating invalid application key
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.InvalidMessageContent">
+            <summary>
+            Value indicating invalid message content
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.NoDestinationReached">
+            <summary>
+            Value indicating no destination reached
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.CustomizedMessageNotSupport">
+            <summary>
+            Value indicating customized message not support
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.InvalidContentType">
+            <summary>
+            Value indicating invalid content type
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushResponseCode.HttpIsNotAllowed">
+            <summary>
+            Value indicating HTTP is not allowed. Please turn to use HTTPS.
+            </summary>
+        </member>
+        <member name="T:ifunction.JPush.PushType">
+            <summary>
+            Enum PushType
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushType.Unknown">
+            <summary>
+            The unknown
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushType.ByTag">
+            <summary>
+            The by tag
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushType.ByAlias">
+            <summary>
+            The by alias
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushType.Broadcast">
+            <summary>
+            The broadcast
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.PushType.ByRegistrationId">
+            <summary>
+            The by registration unique identifier
+            </summary>
+        </member>
+        <member name="T:ifunction.JPush.V3.PushMessageRequestV3">
+            <summary>
+            Class PushMessageRequest.
+            <see cref="T:ifunction.JPush.PushMessageRequest"/> and <see cref="T:ifunction.JPush.PushMessage"/> work together to send out push request.
+            See official RESTful API: http://docs.jpush.cn/display/dev/Push+API+v2
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.V3.PushMessageRequestV3.Notification">
+            <summary>
+            Gets or sets the notification.
+            </summary>
+            <value>The notification.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.PushMessageRequestV3.Audience">
+            <summary>
+            Gets or sets the audience.
+            </summary>
+            <value>The audience.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.PushMessageRequestV3.AppMessage">
+            <summary>
+            Gets or sets the message.
+            </summary>
+            <value>The message.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.PushMessageRequestV3.Platform">
+            <summary>
+            Gets or sets the platform.
+            </summary>
+            <value>The platform.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.PushMessageRequestV3.LifeTime">
+            <summary>
+            Gets or sets the life time.
+            Unit: second.
+            Max: 864000 Seconds (10 days).
+            Default: 86400 Seconds (1 days).
+            If set as 0, means no life time. Only the online destination would be get message at the time when push message delivers JPush.
+            </summary>
+            <value>The life time.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.PushMessageRequestV3.OverrideMessageId">
+            <summary>
+            Gets or sets the override message unique identifier.
+            </summary>
+            <value>The override message unique identifier.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.PushMessageRequestV3.IsTestEnvironment">
+            <summary>
+            Gets or sets a value indicating whether this instance is test.
+            For iOS only.
+            Default: false.
+            </summary>
+            <value><c>true</c> if this instance is test; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:ifunction.JPush.V3.AndroidNotificationParameters">
+            <summary>
+            Enum PushType
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.V3.AndroidNotificationParameters.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ifunction.JPush.V3.AndroidNotificationParameters"/> class.
+            </summary>
+        </member>
+        <member name="P:ifunction.JPush.V3.AndroidNotificationParameters.Alert">
+            <summary>
+            Gets or sets the alert.
+            </summary>
+            <value>The alert.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.AndroidNotificationParameters.Title">
+            <summary>
+            Gets or sets the title.
+            </summary>
+            <value>The title.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.AndroidNotificationParameters.BuilderId">
+            <summary>
+            Gets or sets the builder identifier.
+            </summary>
+            <value>The builder identifier.</value>
+        </member>
+        <member name="P:ifunction.JPush.V3.AndroidNotificationParameters.CustomizedValues">
+            <summary>
+            Gets or sets the customized values.
+            </summary>
+            <value>The customized values.</value>
+        </member>
+        <member name="T:ifunction.JPush.V3.PushTypeV3">
+            <summary>
+            Enum PushType
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.PushTypeV3.None">
+            <summary>
+            The value indicating it is none
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.PushTypeV3.Broadcast">
+            <summary>
+            The value indicating it is broadcast
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.PushTypeV3.ByTagWithinOr">
+            <summary>
+            The value indicating it is by tag in OR operation.
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.PushTypeV3.ByTagWithinAnd">
+            <summary>
+            The value indicating it is by tag in AND operation.
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.PushTypeV3.ByAlias">
+            <summary>
+            The value indicating it is by alias
+            </summary>
+        </member>
+        <member name="F:ifunction.JPush.V3.PushTypeV3.ByRegistrationId">
+            <summary>
+            The value indicating it is by registration unique identifier
+            </summary>
+        </member>
+        <member name="T:ifunction.JPush.PushMessageTrackingComparer">
+            <summary>
+            Class PushMessageTracking.
+            </summary>
+        </member>
+        <member name="M:ifunction.JPush.PushMessageTrackingComparer.Equals(ifunction.JPush.PushMessageTracking,ifunction.JPush.PushMessageTracking)">
+            <summary>
+            Determines whether the specified objects are equal.
+            </summary>
+            <param name="x">The first object of type <paramref name="x" /> to compare.</param>
+            <param name="y">The second object of type <paramref name="y" /> to compare.</param>
+            <returns>true if the specified objects are equal; otherwise, false.</returns>
+        </member>
+        <member name="M:ifunction.JPush.PushMessageTrackingComparer.GetHashCode(ifunction.JPush.PushMessageTracking)">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> for which a hash code is to be returned.</param>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+    </members>
+</doc>

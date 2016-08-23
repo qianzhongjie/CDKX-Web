@@ -1,0 +1,212 @@
+﻿@using Bode.Plugin.WebControles.MvcCaptcha
+@{
+    Layout = null;
+}
+
+<!-- register -->
+<section class="register" id="registerBox" style="display:none;">
+
+    <div class="register-box pd-40 register1">
+        <div class="box-title pos-r mb-40">
+            <h4 class="f-20 text-c">注册会员</h4>
+            <a href="javascript:void(0)" class="f-14 login-link" id="back_login">返回登录</a>
+
+        </div>
+        <!-- step1 -->
+        <form class="login-form form1" id="register1">
+            <input type="tel" name="tel" id="phoneNo" placeholder="手机号" class="indent input-text mb-20">
+            <p class="cl">
+                <input type="text" name="tel" id="validateCode" placeholder="输入验证码" class="l confirm indent input-text mb-20 col-2-1">
+                <input type="button" class="confirm-btn input-text col-3-1 r text-c f-16 btn" value="获取验证码" onclick="getTimers(59, this);">
+            </p>
+            <input type="button" value="下一步" class="f-20 btn btn-default login-btn" id="next-btn" onclick="nextV()">
+            <span class="f-16 colorH text-c"><font color="#de64a6" id="msg_validateCode"></font></span>
+        </form>
+
+        <!-- step2 -->
+        <form class="login-form form2" id="register" action="" method="post">
+            <input type="password" name="tel" placeholder="设置密码" class="indent input-text mb-20" id="password1">
+            <input type="password" name="tel" placeholder="确认密码" class="indent input-text mb-20" id="password2">
+
+            <p class="cl">
+                @Html.ValidationSummary()
+                @Html.MvcCaptcha()
+                <input type="text" name="_mvcCaptchaText" id="_mvcCaptchaText" placeholder="输入验证码" class="l confirm indent input-text mb-20 col-2-1">
+            </p>
+            <input type="button" value="注册" class="f-20 btn btn-default login-btn " onclick="register()">
+            <label for='checkbox mt-10'>
+                <input type="checkbox" value="" class="input-check" id="checkbox" name="checkbox" onclick="checkboxClick(this)">
+                <span class="colorB ">我已阅读并同意<span class="colorR">《用户手册》</span></span>
+            </label>
+            <br />
+            <span class="f-16 colorH text-c"><font color="#de64a6" id="msg_validateCode1"></font></span>
+        </form>
+
+        <div class="other-login mt-40 text-c">
+            <p class="f-16 colorH text-c">使用第三方账号登录</p>
+            <ul class="login-icon  mt-30">
+                <li class="text-c">
+                    <a href="#" class="qq"></a>
+                </li>
+                <li class="text-c ">
+                    <a href="#" class="weixin"></a>
+                </li>
+                <li class="text-c">
+                    <a href="#" class="weibo"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<div class="mask"></div>
+<!-- //register -->
+<script type="text/javascript">
+    $(function () {
+        $('#register').find('a').eq(1).remove();
+        $('#register').find('a').eq(0).attr('class', 'r');
+        $('#register').find('img').attr('width', '172');
+        $('#register').find('img').attr('height', '50');
+
+        //$("#next-btn").click(function () {
+        //    validateCode();
+        //});
+        function registerChange(btn, box1, box2, checkbox) {
+
+            box1.css('display', 'block');
+            box2.css('display', 'none');
+
+            btn.click(function () {
+                box2.css('display', 'block');
+                box1.css('display', 'none');
+                $('.register-box').removeClass('register1');
+            });
+
+            checkbox.click(function () {
+                if (checkbox.hasClass('checked')) {
+                    checkbox.removeClass('checked')
+                } else {
+                    checkbox.addClass('checked')
+                }
+            });
+
+        }
+    });
+    function nextV() {
+        if ($('#validateCode').val() === "") {
+            $('#msg_validateCode').html('您还没有输入验证码');
+            $("#register1").css('display', 'block');
+            $("#register").css('display', 'none');
+        } else {
+            $("#register").css('display', 'block');
+            $("#register1").css('display', 'none');
+        }
+    }
+    function getTimers(v, d) {
+        $("#msg_validateCode").html('');
+        if ($("#phoneNo").val() === "") {
+            $("#msg_validateCode").html('请输入手机号码');
+        } else if (!checkForm($('#phoneNo').val())) {
+            $("#msg_validateCode").html('请输入正确的手机号码');
+        } else {
+            $.post("@Url.Action("GetCode", "Account")", { phoneNo: $("#phoneNo").val(), type: 1 }, function (data) {
+                $("#msg_validateCode").html(data);
+            });
+            timers(v, d);
+        }
+
+    }
+    function timers(intDiff, button) {
+        setInterval(function () {
+            var day = 0,
+                hour = 0,
+                minute = 0,
+                second = 0; //时间默认值
+            if (intDiff > 0) {
+                day = Math.floor(intDiff / (60 * 60 * 24));
+                hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (second <= 9) second = '0' + second;
+            $(button).attr("disabled", true);
+            $(button).attr('value', '' + second + ' 秒后再试');
+            intDiff--;
+            if (second === "00") { $(button).attr("disabled", false); $(button).attr('value', '获取验证码'); }
+        }, 1000);
+    }
+    function checkboxClick(obj) {
+        if ($(obj).attr('ch') === "checked") {
+            $(obj).attr('ch', '');
+        } else {
+            $(obj).attr('ch', "checked");
+        }
+    }
+
+
+    //正则--手机号
+    function checkForm(o) {
+        if (!!o.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/) == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //验证手机验证碼
+    function validateCode() {
+        if ($('#phoneNo').val() === "") {
+            $('#msg_validateCode').html('您还没有输入手机号码');
+        } else if ($('#validateCode').val() === "") {
+            $('#msg_validateCode').html('您还没有输入验证码');
+        } else if (!checkForm($('#phoneNo').val())) {
+            $('#msg_validateCode').html('请输入正确的手机号码');
+        } else {
+            $.post("@Url.Action("IsValidateCode", "Account")", { phoneNo: $('#phoneNo').val(), validateCode: $('#validateCode').val() }, function (data) {
+                if (data.ReturnCode === 2) {
+                    $('.form1').css('display', 'block');
+                    $('.form2').css('display', 'none');
+                    $('#msg_validateCode').html(data.ReturnMsg);
+                } else {
+                    $('.form2').css('display', 'block');
+                    $('.form1').css('display', 'none');
+                    $('.login-box').removeClass('register1');
+                }
+            });
+        }
+    }
+
+    //提交注册信息
+    function register() {
+        if ($("#password1").val() === "") {
+            $('#msg_validateCode1').html('请输入密码');
+        } else if ($("#password2").val() === "") {
+            $('#msg_validateCode1').html('请再输入一次密码');
+        } else if ($("#checkbox").attr("ch") !== "checked") {
+            $('#msg_validateCode1').html('请阅读用户手册，并同意此协议');
+        }
+        else {
+            if ($("#password1").val() === $("#password2").val()) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("ValidateRegister", "Account")",
+                    async: false,
+                    data: $('#register').serialize() + '&phoneNo=' + $('#phoneNo').val() + '&validateCode=' + $('#validateCode').val() + '&password=' + $("#password2").val(),
+                    success: function (data) {
+                        if (data.ReturnCode === 1) {
+                            $('#msg_validateCode1').html(data.ReturnMsg);
+                            $("#registerBox").hide();
+                        } else {
+                            $('#msg_validateCode1').html(data.ReturnMsg);
+                        }
+                        //$('#register').find('img').trigger('click');
+                        return false;
+                    }
+                });
+            } else {
+                $('#msg_validateCode1').html('两次输入的密码不一致');
+            }
+        }
+    }
+
+
+</script>

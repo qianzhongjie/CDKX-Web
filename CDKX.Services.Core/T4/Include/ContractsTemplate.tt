@@ -1,0 +1,75 @@
+﻿<#+
+// <copyright file="Template1.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class ContractsTemplate : CSharpTemplate
+{
+    private IEnumerable<Type> _innerModelTypes;
+    private string _moduleName;
+
+    public ContractsTemplate(IEnumerable<Type> innerModelTypes,string moduleName)
+    {
+        _innerModelTypes = innerModelTypes;
+        _moduleName=moduleName;
+    }
+    
+     public string FileName
+    {
+        get{ return string.Format("I{0}Contract.generated.cs", _moduleName); }
+    }
+
+	public override string TransformText()
+	{
+		base.TransformText();
+#>
+
+using System;
+using System.Linq;
+using OSharp.Core;
+using OSharp.Utility.Data;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using OSharp.Core.Dependency;
+using CDKX.Services.Core.Dtos.<#=_moduleName #>;
+using CDKX.Services.Core.Models.<#=_moduleName #>;
+
+namespace CDKX.Services.Core.Contracts
+{
+	public partial interface I<#=_moduleName #>Contract : IScopeDependency
+	{
+		<#+
+            foreach(var item in _innerModelTypes)
+            {
+                #>
+                #region <#=item.Name #>信息业务
+
+                IQueryable<<#=item.Name #>> <#=item.Name #>s { get; }
+
+                /// <summary>
+                /// 保存<#=item.Name #>信息(新增/更新)
+                /// </summary>
+                /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+                /// <param name="dtos">要保存的<#=item.Name #>Dto信息</param>
+                /// <returns>业务操作集合</returns>
+                Task<OperationResult> Save<#=item.Name #>s(bool updateForeignKey=false,params <#=item.Name #>Dto[] dtos);
+
+                /// <summary>
+                /// 删除<#=item.Name #>信息
+                /// </summary>
+                /// <param name="ids">要删除的Id编号</param>
+                /// <returns>业务操作结果</returns>
+                Task<OperationResult> Delete<#=item.Name #>s(params int[] ids);
+
+                #endregion
+
+                <#+
+            }
+        #>
+	}
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

@@ -1,0 +1,235 @@
+﻿@using Bode.Services.Core.Models.PresellOrder
+@{
+    Layout = null;
+}
+@{
+    decimal goodsPrice = 0;
+    foreach (Bode.Services.Core.Models.PresellOrder.PresellOrderInfo waitPayInfo in ViewBag.Data)
+    {
+        var state = "";
+        if (waitPayInfo.OrderState == OrderStates.未支付)
+        {
+            state = "待支付";
+        }
+        if (waitPayInfo.OrderState == OrderStates.已支付)
+        {
+            state = "带生产";
+        }
+        if (waitPayInfo.OrderState == OrderStates.生产中)
+        {
+            state = "生产中";
+        }
+        if (waitPayInfo.OrderState == OrderStates.已发货)
+        {
+            state = "代收货";
+        }
+        if (waitPayInfo.OrderState == OrderStates.已完成)
+        {
+            state = "已完成";
+        }
+        if (waitPayInfo.OrderState == OrderStates.已取消)
+        {
+            state = "已取消";
+        }
+        goodsPrice = 0;
+                    <!-- 订单头部 -->
+        <div name="orderNo" id="divOrdre_@waitPayInfo.Id">
+            <p class="bar-head">
+                <span class="col-3-1 p-dlb pl-20">@waitPayInfo.CreatedTime</span>
+                <span class="col-3-1 p-dlb">
+                    订单号:
+                    <span>@waitPayInfo.OrderNo</span>
+                </span>
+                <span class="col-4-1 p-dlb p-colorR">@state</span>
+            </p>
+            <!-- //订单头部 -->
+            <!-- 订单详情 -->
+            <div class="bar-info pd-10">
+                <p class="f-16 pb-10 pos-r">
+                    订单详情 <i class="down-btn"></i>
+                </p>
+                <ul class="cl pd-10">
+                    <li class="l col-3-1">
+                        <p class="p-colorH f-12">收货人</p>
+                        <p>@waitPayInfo.DeliveryAddress.Consignee</p>
+                    </li>
+                    <li class="l col-3-1">
+                        <p class="p-colorH f-12">收货人电话</p>
+                        <p>@waitPayInfo.DeliveryAddress.PhoneNo</p>
+                    </li>
+                    <li class="l col-3-1">
+                        <p class="p-colorH f-12">支付方式</p>
+                        <p>@waitPayInfo.PayType.ToString()</p>
+                    </li>
+                    <li class="l mt-10">
+                        <p class="p-colorH">所在地区</p>
+                        <p>
+                            @waitPayInfo.DeliveryAddress.Province-@waitPayInfo.DeliveryAddress.City-@waitPayInfo.DeliveryAddress.District-@waitPayInfo.DeliveryAddress.ShipAddress
+                            <span>@waitPayInfo.DeliveryAddress.PostCode</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <!--//订单详情 -->
+            <!-- 订单汇总 -->
+            <div class="bar-goods pd-10">
+                <p class="f-16 pb-10">订单汇总</p>
+                <ul class="cl">
+                    @{
+        foreach (Bode.Services.Core.Models.PresellOrder.PresellOrderLine orderLine in waitPayInfo.OrderLines)
+        {
+            goodsPrice += orderLine.PresellGoodsInfo.PromotionPrice == 0 ? orderLine.PresellGoodsInfo.Price : orderLine.PresellGoodsInfo.PromotionPrice;
+
+            var priceline = "￥" + orderLine.PresellGoodsInfo.Price;
+            if (orderLine.PresellGoodsInfo.PromotionPrice > 0)
+            {
+                priceline = "<span class=\"p-colorR\">折扣价</span>￥" + orderLine.PresellGoodsInfo.PromotionPrice;
+            }
+            <li class="goods-car cl pd-20 pos-r">
+                <div class="goods-pic l  text-c mr-20">
+                    <img src="@orderLine.PresellGoodsInfo.Cover">
+                </div>
+                <div class="goods-fun l col-3-2 cl ">
+                    <div class="goods-fun-title f-18 pt-20 pb-20">
+                        @orderLine.PresellGoodsInfo.Name
+                        <p class="text-r r ">
+                            <span class="price">@Html.Raw(priceline)</span>
+                        </p>
+                    </div>
+                    <div class="goods-fun-tab pt-20">
+                        <ul class="text-c cl">
+                            <li class="l col-3-1">
+                                <p class="f-14 p-colorH">数量</p>
+                                <input type="button" value="-" id="min" class="btn">
+                                <input type="text" value="@orderLine.PressCount" class="btn" id="num">
+                                <input type="button" value="+" id="add" class="btn">
+                            </li>
+                            <li class="l col-3-1">
+                                <p class="f-14 p-colorH">颜色</p>
+                                <div class="color p-dlb color-bg" style="background-color: @orderLine.Color.Color.Rgb"></div>
+                            </li>
+                            <li class="l col-3-1">
+                                <p class="f-14 p-colorH">尺码</p>
+                                <span class="size">
+                                    @orderLine.PresellGoodsSize.SizeInfo.China
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        }
+                    }
+                </ul>
+            </div>
+            <!-- //订单汇总 -->
+            <!-- 订单尾部 -->
+            <div class="bar-end">
+                <p class="pl-20">
+                    订单备注：
+                    <span>@waitPayInfo.Remark</span>
+                </p>
+                <ul class="bar-end-list  f-12 lh-30 text-r pd-10">
+                    <li>
+                        <p class="p-dlb">
+                            <span id="shuliang">@waitPayInfo.OrderLines.Count()</span>
+                            件商品总计：
+                        </p>
+                        <p class="p-dlb">
+                            ￥
+                            <span>@goodsPrice</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="p-dlb">运费：</p>
+                        <p class="p-dlb">
+                            ￥
+                            <span>@{var y = waitPayInfo.TotalPrice - goodsPrice; } @y</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="p-dlb">总计：</p>
+                        <p class="p-dlb price">
+                            ￥
+                            <span id="zong1">@waitPayInfo.TotalPrice</span>
+                        </p>
+                    </li>
+                    @{
+        if (waitPayInfo.OrderState == OrderStates.未支付)
+        {
+            <li class="mt-20">
+                <p class="p-dlb mr-20" onclick="deleteOrder('@waitPayInfo.OrderNo', this)">取消订单</p>
+                <p class="p-dlb" onclick="payOrder('@waitPayInfo.OrderNo')">立即支付</p>
+            </li>
+                        <li class="f-12 p-colorH">
+                            剩余
+                            @{
+            var time = DateTime.Parse(waitPayInfo.OrderLines.First().PresellGoodsInfo.EndTime.ToString()) - waitPayInfo.CreatedTime;
+            if (time.Hours < 0)
+            {
+                <script type="text/javascript">
+                    $(function () {
+                        $.post("/Web/PresellGoods/EixtOrder", { orderNo: '@waitPayInfo.OrderNo' }, function (data) {
+                            $('#divOrdre_@waitPayInfo.Id').remove();
+                        });
+                    })
+                </script>
+            }
+            else
+            {
+                <span> @time.Hours 时 @time.Minutes 分钟自动关闭订单</span>
+            }
+                            }
+                        </li>
+        }
+        else if (waitPayInfo.OrderState == OrderStates.已支付)
+        {
+            <li class="mt-20">
+                <p class="p-dlb mr-20" onclick="addService('@waitPayInfo.Id', 1, '@waitPayInfo.TotalPrice')">
+                    <a href="javascript:void(0);">申请售后</a>
+                </p>
+            </li>
+
+        }
+        else if (waitPayInfo.OrderState == OrderStates.生产中)
+        {
+            <li class="mt-20">
+                <p>您的商品正在生产中，请耐心等候。。。</p>
+            </li>
+
+        }
+        else if (waitPayInfo.OrderState == OrderStates.已发货)
+        {
+            <li class="mt-20">
+                <p class="p-dlb mr-20" onclick="addService('@waitPayInfo.Id', 0, '@waitPayInfo.TotalPrice')">
+                    <a href="javascript:void(0);">申请售后</a>
+                </p>
+                <p class="p-dlb" onclick="confirmOrder('@waitPayInfo.OrderNo', this)">确认收货</p>
+            </li>
+        }
+        else if (waitPayInfo.OrderState == OrderStates.已完成)
+        {
+            <li class="mt-20" onclick="addService('@waitPayInfo.Id', 0, '@waitPayInfo.TotalPrice')">
+                <p class="p-dlb">
+                    <a href="javascript:void(0);">申请售后</a>
+                </p>
+            </li>
+
+        }
+        else
+        {
+
+        }
+                    }
+                </ul>
+            </div>
+            <!-- //订单尾部 -->
+
+        </div>
+        <div class="demo_line_01"></div>
+    }
+}
+<div class="pageNav listcon-page laypage_main" id="pageNav" style=" position: absolute;
+    left: 450px;">
+    @PageHtml.ShowPageNavigate(this.Html, ViewBag.Index, ViewBag.Size, ViewBag.Count, "getOrderData")
+</div>

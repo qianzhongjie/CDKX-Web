@@ -1,0 +1,70 @@
+.sprite {
+  background-image: url(/static/img/bg.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.sprite.sprite-complaint {
+  background-position: -5px -5px;
+  width: 46px;
+  height: 48px;
+}
+.sprite.sprite-down {
+  background-position: -61px -5px;
+  width: 28px;
+  height: 16px;
+}
+.sprite.sprite-mark {
+  background-position: -99px -5px;
+  width: 71px;
+  height: 98px;
+}
+.sprite.sprite-mark2 {
+  background-position: -180px -5px;
+  width: 24px;
+  height: 38px;
+}
+.sprite.sprite-menu {
+  background-position: -214px -5px;
+  width: 64px;
+  height: 58px;
+}
+.sprite.sprite-near {
+  background-position: -288px -5px;
+  width: 48px;
+  height: 50px;
+}
+.sprite.sprite-phone {
+  background-position: -346px -5px;
+  width: 44px;
+  height: 44px;
+}
+.sprite.sprite-prog {
+  background-position: -346px -59px;
+  width: 48px;
+  height: 48px;
+}
+.sprite.sprite-ques {
+  background-position: -5px -117px;
+  width: 43px;
+  height: 46px;
+}
+.sprite.sprite-right {
+  background-position: -58px -117px;
+  width: 25px;
+  height: 45px;
+}
+.sprite.sprite-success {
+  background-position: -93px -117px;
+  width: 100px;
+  height: 97px;
+}
+.sprite.sprite-user {
+  background-position: -203px -117px;
+  width: 154px;
+  height: 154px;
+}
+.sprite.sprite-user2 {
+  background-position: -404px -5px;
+  width: 322px;
+  height: 322px;
+}

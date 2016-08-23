@@ -1,0 +1,160 @@
+﻿@using Bode.Services.Core.Models.GoodsService
+@{
+    Layout = null;
+}
+<!-- 审核中 -->
+@{
+    foreach (Bode.Services.Core.Models.GoodsService.AfterService service in ViewBag.Data)
+    {
+        <p class="bar-head">
+            <span class="col-3-1 p-dlb pl-20">@service.CreatedTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+            <span class="col-3-1 p-dlb">
+                订单号:<span>@service.PresellOrderInfo.OrderNo</span>
+            </span>
+            <span class="col-4-1 p-dlb p-colorR">@service.State.ToString()</span>
+        </p>
+                    <!-- 汇总 -->
+        <div class="bar-goods pt-10 pb-10">
+            <ul class="cl">
+                @{
+        foreach (Bode.Services.Core.Models.PresellOrder.PresellOrderLine line in service.PresellOrderInfo.OrderLines)
+                    {
+                <li class="goods-car cl pd-20 pos-r">
+                    <div class="goods-pic l text-c mr-20">
+                        <img src="@line.PresellGoodsInfo.Cover" />
+                    </div>
+                    <div class="goods-fun l col-3-2 cl ">
+                        <div class="goods-fun-title f-18 pt-20 pb-20">
+                            @line.PresellGoodsInfo.Name
+                            <p class="text-r r ">
+                                ￥
+                                <span class="price">@line.PresellGoodsInfo.Price</span>
+                            </p>
+                        </div>
+                        <div class="goods-fun-tab pt-20">
+                            <ul class="text-c cl">
+                                <li class="l col-3-1">
+                                    <p class="f-14 p-colorH">数量</p>
+                                    <span class="ft-16 size">@line.PressCount</span>
+                                <li class="l col-3-1">
+                                    <p class="f-14 p-colorH">颜色</p>
+                                    <div class="color p-dlb color-bg" style="background-color: @line.Color.Color.Rgb"></div>
+                                </li>
+                                <li class="l col-3-1">
+                                    <p class="f-14 p-colorH">尺码</p>
+                                    <span class="size">@line.PresellGoodsSize.SizeInfo.China</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                    }
+                }
+            </ul>
+        </div>
+        if (service.State == ServiceState.审核中)
+        {
+          <!-- 尾部 -->
+            <div class="bar-end">
+                <ul class="bar-end-list  f-12 lh-30 text-r pd-10">
+                    <li>
+                        <p class="p-dlb">交易金额：</p>
+                        <p class="p-dlb price">
+                            ￥
+                            <span id="Span2">@service.PresellOrderInfo.TotalPrice</span>
+                        </p>
+                    </li>
+                    <li class="mt-20">
+                        <a class="Btn" onclick="clnerService(this)" data-id="@service.Id">取消售后</a>
+                    </li>
+                </ul>
+            </div>
+
+        }
+        if (service.State == ServiceState.退货中)
+        {
+            <div class="bar-end">
+                <ul class="bar-end-list  f-12 lh-30 text-r pd-10">
+                    <li>
+                        <p class="p-dlb">交易金额：</p>
+                        <p class="p-dlb price">
+                            ￥
+                            <span id="Span11">@service.PresellOrderInfo.TotalPrice</span>
+                        </p>
+                    </li>
+                    <li class="mt-20">
+                        <a class="Btn mr-20" onclick="clnerService(this)" data-id="@service.Id">取消售后</a>
+                        <a class="Btn retu" data-id="@service.Id">回寄单号</a>
+                    </li>
+                    <li class="f-12 p-colorH">
+                        <span>72小时后未填写回寄单号系统自动关闭售后</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bar-end hide">
+                <ul class="bar-end-list  f-12 lh-30 text-r pd-10">
+                    <li>
+                        <p class="p-dlb">交易金额：</p>
+                        <p class="p-dlb price">
+                            ￥
+                            <span id="Span12">@service.PresellOrderInfo.TotalPrice</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="p-dlb">回寄单号：</p>
+                        <p class="p-dlb price">
+                            <span id="mailListNumber" name="mailListNumber">
+                                @{
+        var p = "";
+        if (!string.IsNullOrWhiteSpace(service.Express))
+        {
+            p = service.Express + ":";
+        }
+
+                                }@p@service.ExpressNo
+                            </span>
+                        </p>
+                    </li>
+                    <li class="f-18 p-colorB">
+                        <span>待平台成功收货后，我们将在两个工作日内退款到账户</span>
+                    </li>
+                </ul>
+            </div>
+        }
+        if (service.State == ServiceState.失败)
+        {
+            <div class="bar-end">
+                <ul class="bar-end-list  f-12 lh-30 text-r pd-10">
+                    <li>
+                        <p class="p-dlb">交易金额：</p>
+                        <p class="p-dlb price">
+                            ￥
+                            <span id="Span2">@service.PresellOrderInfo.TotalPrice</span>
+                        </p>
+                    </li>
+                    <li class="mt-20">
+                        <a class="Btn">重新申请</a>
+                    </li>
+                </ul>
+            </div>
+        }
+        if (service.State == ServiceState.成功)
+        {
+            <div class="bar-end">
+                <ul class="bar-end-list  f-12 lh-30 text-r pd-10">
+                    <li>
+                        <p class="p-dlb">交易金额：</p>
+                        <p class="p-dlb price">
+                            ￥
+                            <span id="Span2">@service.PresellOrderInfo.TotalPrice</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+    }
+    }
+}
+<div class="pageNav listcon-page laypage_main" id="pageNav" style=" position: absolute;
+    left: 450px;">
+    @PageHtml.ShowPageNavigate(this.Html, ViewBag.Index, ViewBag.Size, ViewBag.Count, "getAfterData")
+</div>

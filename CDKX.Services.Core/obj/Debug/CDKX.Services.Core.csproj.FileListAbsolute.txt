@@ -1,0 +1,13 @@
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\CDKX.Services.Core.dll.config
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\CDKX.Services.Core.dll
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\CDKX.Services.Core.pdb
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\AutoMapper.dll
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\Newtonsoft.Json.dll
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\AutoMapper.xml
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\Newtonsoft.Json.xml
+D:\Work\CDKX\CDKX.Services.Core\bin\Debug\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+D:\Work\CDKX\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.dll
+D:\Work\CDKX\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.pdb
+D:\Work\CDKX\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.csprojResolveAssemblyReference.cache
