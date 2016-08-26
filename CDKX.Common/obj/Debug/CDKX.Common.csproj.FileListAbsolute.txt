@@ -6,3 +6,10 @@ D:\Work\CDKX\CDKX.Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 D:\Work\CDKX\CDKX.Common\obj\Debug\CDKX.Common.dll
 D:\Work\CDKX\CDKX.Common\obj\Debug\CDKX.Common.pdb
 D:\Work\CDKX\CDKX.Common\obj\Debug\CDKX.Common.csprojResolveAssemblyReference.cache
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Common\bin\Debug\CDKX.Common.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Common\bin\Debug\CDKX.Common.pdb
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Common\bin\Debug\System.Web.Mvc.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Common\bin\Debug\System.Web.Mvc.xml
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Common\obj\Debug\CDKX.Common.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Common\obj\Debug\CDKX.Common.pdb

@@ -57,7 +57,7 @@
     </Reference>
     <Reference Include="Bode.Plugin.WebControles.MvcCaptcha, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Bode.Plugin.WebControles.MvcCaptcha.dll</HintPath>
+      <HintPath>..\CDKX.Frame.Bin\Bode.Plugin.WebControles.MvcCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="Bode.Sms.Md, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -238,6 +238,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Web\WebPay\log\log.txt" />
     <Content Include="Content\404\404.htm" />
     <Content Include="Content\404\404\01.jpg" />
     <Content Include="Content\404\404\01.png" />
@@ -735,7 +736,6 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\IdentityController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PayController.cs" />
     <Compile Include="Areas\Admin\Controllers\SystemController.cs" />
     <Compile Include="Areas\Admin\ViewModels\HashNode.cs" />
     <Compile Include="Areas\Admin\ViewModels\BannerSumViewModel.cs" />
@@ -745,6 +745,22 @@
     <Compile Include="Areas\Admin\ViewModels\KeyOrValue.cs" />
     <Compile Include="Areas\Admin\ViewModels\login.cs" />
     <Compile Include="Areas\Admin\ViewModels\TreeNode.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Api\Controllers\BasicInfoController.cs" />
+    <Compile Include="Areas\Api\Models\BaseHotKey.cs" />
+    <Compile Include="Areas\Api\Models\TemaplsValue.cs" />
+    <Compile Include="Areas\Web\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Web\Controllers\PayController.cs" />
+    <Compile Include="Areas\Web\Controllers\WebController.cs" />
+    <Compile Include="Areas\Web\Models\BaseModel.cs" />
+    <Compile Include="Areas\Web\Models\Comment.cs" />
+    <Compile Include="Areas\Web\WebAreaRegistration.cs" />
+    <Compile Include="Areas\Web\WebPay\app_code\AlipayConfig.cs" />
+    <Compile Include="Areas\Web\WebPay\app_code\AlipayCore.cs" />
+    <Compile Include="Areas\Web\WebPay\app_code\AlipayNotify.cs" />
+    <Compile Include="Areas\Web\WebPay\app_code\AlipaySubmit.cs" />
+    <Compile Include="Areas\Web\WebPay\app_code\MD5.cs" />
     <Compile Include="Authentication\WebIsLoginTokenAuthAttribute.cs" />
     <Compile Include="Authentication\SingleLoginTokenAuthAttribute.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\Config.cs" />
@@ -810,6 +826,18 @@
     <Content Include="Areas\Admin\Views\Home\Welcome.cshtml" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Web\Views\Account\Account.cshtml" />
+    <Content Include="Areas\Web\Views\Account\GetAfterData.cshtml" />
+    <Content Include="Areas\Web\Views\Account\GetOrderStateAll.cshtml" />
+    <Content Include="Areas\Web\Views\Pay\PayOrder.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\Login.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\LowHtml.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\Optimization.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\Register.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\TopHtml.cshtml" />
+    <Content Include="Areas\Web\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Web\Views\web.config" />
+    <Content Include="Areas\Web\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\211.149.223.24.pubxml" />
     <None Include="Properties\PublishProfiles\Bode.pubxml" />
     <None Include="Properties\PublishProfiles\www.innshoes.com.pubxml" />

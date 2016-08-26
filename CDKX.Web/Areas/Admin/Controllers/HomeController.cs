@@ -31,7 +31,8 @@ namespace CDKX.Web.Areas.Admin.Controllers
             var user = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
             if (user == null || user.UserType == UserType.App用户)
             {
-                FormsAuthentication.SignOut();
+                if (user.UserType == UserType.App用户)
+                    FormsAuthentication.SignOut();
                 return RedirectToAction("Login");
             }
             ViewBag.User = user;
@@ -59,31 +60,31 @@ namespace CDKX.Web.Areas.Admin.Controllers
                 .Select(p => p.Function).Distinct().OrderBy(p => p.OrderNo).ToList();
 
             int i = 0;
-            var menus = functions.Where(p => p.IsController).Select(p =>
-            {
-                return new TreeNode()
+            var menus = functions.Where(p => p.IsController && p.Area == "Admin").Select(p =>
                 {
-                    Id = p.Id,
-                    Text = p.Name,
-                    IconCls = icons[i++ % icons.Count()],
-                    Url = Url.Action(p.Action, p.Controller, new { area = p.Area }),
-                    Children =
-                        functions.Where(
-                            m => m.MenuGroupKey == p.MenuGroupKey && !m.IsController && m.IsMenu)
-                            .Select(m =>
-                            {
-                                string url = Url.Action(m.Action, m.Controller, new { area = m.Area });
-                                if (url == "/") url = "";
-                                return new TreeNode()
+                    return new TreeNode()
+                    {
+                        Id = p.Id,
+                        Text = p.Name,
+                        IconCls = icons[i++ % icons.Count()],
+                        Url = Url.Action(p.Action, p.Controller, new { area = p.Area }),
+                        Children =
+                            functions.Where(
+                                m => m.MenuGroupKey == p.MenuGroupKey && !m.IsController && m.IsMenu)
+                                .Select(m =>
                                 {
-                                    Id = m.Id,
-                                    Text = m.Name,
-                                    IconCls = "",
-                                    Url = url,
-                                };
-                            }).ToList()
-                };
-            }).ToList();
+                                    string url = Url.Action(m.Action, m.Controller, new { area = m.Area });
+                                    if (url == "/") url = "";
+                                    return new TreeNode()
+                                    {
+                                        Id = m.Id,
+                                        Text = m.Name,
+                                        IconCls = "",
+                                        Url = url,
+                                    };
+                                }).ToList()
+                    };
+                }).ToList();
             return Json(menus);
         }
 
@@ -121,7 +122,7 @@ namespace CDKX.Web.Areas.Admin.Controllers
             var result = await IdentityContract.ResetPassword(User.Identity.Name, oldPassword, newPassword);
             return Json(result.ToAjaxResult());
         }
-        
+
         [Description("登录页")]
         public ActionResult Login()
         {

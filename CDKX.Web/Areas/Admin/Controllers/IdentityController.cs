@@ -263,14 +263,14 @@ namespace CDKX.Web.Areas.Admin.Controllers
         [Description("获取控制器数据")]
         public ActionResult GetControllers()
         {
-            var areas = SecurityContract.Functions.Select(p => new
+            var areas = SecurityContract.Functions.Where(x => x.Area == "Admin").Select(p => new
             {
                 value = p.Area == null || p.Area == "" ? "Home" : p.Area,
                 text = p.Area == null || p.Area == "" ? "Home" : p.Area,
                 parentId = "0"
             }).Distinct().ToList();
 
-            var data = SecurityContract.Functions.Where(p => p.IsController && (p.PlatformToken == PlatformToken.Mvc || p.PlatformToken == PlatformToken.WebApi)).Select(p => new
+            var data = SecurityContract.Functions.Where(p => p.IsController && (p.PlatformToken == PlatformToken.Mvc || p.PlatformToken == PlatformToken.WebApi) && p.Controller != "Base" && p.Controller != "Home").Select(p => new
             {
                 value = p.Id.ToString(),
                 text = p.Name,
@@ -284,7 +284,7 @@ namespace CDKX.Web.Areas.Admin.Controllers
         [Description("获取所有功能简要")]
         public ActionResult GetAllActionBriefs()
         {
-            var controllers = SecurityContract.Functions.Where(p => p.IsController).Select(p => new
+            var controllers = SecurityContract.Functions.Where(p => p.IsController && p.Area == "Admin" && p.Controller != "Base" && p.Controller != "Home").Select(p => new
             {
                 p.Id,
                 p.Area,
@@ -292,7 +292,7 @@ namespace CDKX.Web.Areas.Admin.Controllers
                 p.PlatformToken
             }).ToList();
 
-            var actions = SecurityContract.Functions.ToList().Select(p => new
+            var actions = SecurityContract.Functions.Where(p => p.Area == "Admin" && !p.IsAjax && p.Controller != "Base" && p.Controller != "Home").ToList().Select(p => new
             {
                 p.Id,
                 p.Name,

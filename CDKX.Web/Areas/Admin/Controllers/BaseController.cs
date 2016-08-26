@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,7 @@ using OSharp.Utility.Logging;
 
 namespace CDKX.Web.Areas.Admin.Controllers
 {
+    [Description("控制器基类")]
     public class BaseController : Controller
     {
         // GET: Admin/Base

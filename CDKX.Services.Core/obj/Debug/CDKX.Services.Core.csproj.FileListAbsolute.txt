@@ -11,3 +11,15 @@ D:\Work\CDKX\CDKX.Services.Core\bin\Debug\zh-Hans\Microsoft.AspNet.Identity.Core
 D:\Work\CDKX\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.dll
 D:\Work\CDKX\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.pdb
 D:\Work\CDKX\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.csprojResolveAssemblyReference.cache
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\CDKX.Services.Core.dll.config
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\CDKX.Services.Core.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\CDKX.Services.Core.pdb
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\AutoMapper.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\Newtonsoft.Json.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\AutoMapper.xml
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\Newtonsoft.Json.xml
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\bin\Debug\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.dll
+E:\qianzhongjie\GitHub\CDKX-Web\CDKX.Services.Core\obj\Debug\CDKX.Services.Core.pdb
